@@ -5,16 +5,18 @@ enum VelocityState { LV_0 = 0, LV_1 = 1, LV_2 = 2, LV_3 = 3, LV_4 = 4 }
 export var speed = 5;
 
 onready var CELL_SIZE = $"/root/Main/LevelData".CELL_SIZE;
-onready var camera = $"../../Camera2D"
+onready var level = $"../Level"
+onready var camera = $"../Camera2D"
 onready var dir_ray = $MovementRayCast
 
 var next_dir = Direction.Dir.NONE
 var curr_vel = VelocityState.LV_0
 
 var is_grid_snapped = true
+var is_frozen = false
 
 func _process(delta):	
-	dir_ray.set_cast_to(Direction.dir2vec(next_dir) * CELL_SIZE)
+	dir_ray.set_cast_to(Direction.dir2vec(next_dir) * CELL_SIZE / 2)
 	dir_ray.force_raycast_update()
 	
 	if dir_ray.is_colliding():
@@ -62,8 +64,19 @@ func handle_collision(obj):
 	if obj.is_in_group("Rock"):
 		if curr_vel < obj.resistance:
 			next_dir = Direction.Dir.NONE
+	elif obj.is_in_group("Key"):
+		level.acquire_key(obj)
 	elif obj.is_in_group("Borders"):
 		next_dir = Direction.Dir.NONE
+
+func toggle_freeze(val):
+	is_frozen = val
+	if val:
+		stop()
+
+func stop():
+	next_dir = Direction.Dir.NONE
+	$MovementTween.stop_all()
 
 func _on_MovementTween_tween_all_completed():
 	is_grid_snapped = true

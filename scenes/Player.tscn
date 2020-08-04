@@ -24,6 +24,6 @@ texture = ExtResource( 1 )
 
 [node name="MovementRayCast" type="RayCast2D" parent="."]
 enabled = true
-cast_to = Vector2( 0, 16 )
+cast_to = Vector2( 0, 0 )
 collide_with_areas = true
 [connection signal="tween_all_completed" from="MovementTween" to="." method="_on_MovementTween_tween_all_completed"]
