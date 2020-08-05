@@ -14,9 +14,6 @@ script = ExtResource( 4 )
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 10 )]
 
-[node name="VictoryControl" parent="CanvasLayer" index="0"]
-visible = false
-
 [node name="LevelData" type="Node2D" parent="."]
 script = ExtResource( 6 )
 
@@ -32,6 +29,7 @@ script = ExtResource( 7 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 [connection signal="zoom_in" from="SwapController" to="Camera2D" method="toggle_zoom" binds= [ true ]]
 [connection signal="zoom_out" from="SwapController" to="Camera2D" method="toggle_zoom" binds= [ false ]]
+[connection signal="death" from="Player" to="CanvasLayer" method="show_game_over_display"]
 
 [editable path="CanvasLayer"]
 

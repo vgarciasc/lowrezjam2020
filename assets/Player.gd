@@ -1,5 +1,7 @@
 extends Area2D
 
+signal death
+
 enum VelocityState { LV_0 = 0, LV_1 = 1, LV_2 = 2, LV_3 = 3, LV_4 = 4 }
 
 export var speed = 5;
@@ -79,6 +81,9 @@ func handle_collision(obj):
 		level.acquire_key(obj)
 	elif obj.is_in_group("Borders"):
 		next_dir = Direction.Dir.NONE
+	elif obj.is_in_group("Hole"):
+		next_dir = Direction.Dir.NONE
+		emit_signal("death")
 
 func toggle_freeze(val):
 	is_frozen = val

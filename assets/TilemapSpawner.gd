@@ -2,6 +2,7 @@ extends TileMap
 
 export (PackedScene) var rock_scene
 export (PackedScene) var key_scene
+export (PackedScene) var hole_scene
 
 signal replacement_completed
 
@@ -25,6 +26,8 @@ func replace_tiles():
 			replace_tile_with_scene(pos, rock_scene.resource_path)
 		elif name == "Key":
 			replace_tile_with_scene(pos, key_scene.resource_path)
+		elif name == "Hole":
+			replace_tile_with_scene(pos, hole_scene.resource_path)
 	
 	emit_signal("replacement_completed")
 

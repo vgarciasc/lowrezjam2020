@@ -5,7 +5,7 @@
 [node name="Level" instance=ExtResource( 1 )]
 
 [node name="Elements" parent="Room1" index="1"]
-tile_data = PoolIntArray( 2, 0, 0 )
+tile_data = PoolIntArray( 2, 0, 0, 131072, 2, 0 )
 
 [node name="Elements" parent="Room2" index="1"]
 tile_data = PoolIntArray( 65538, 0, 0 )
