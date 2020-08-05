@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/TilemapSpawner.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Key.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/tile2.png" type="Texture" id=4]
 [ext_resource path="res://assets/rock2.png" type="Texture" id=5]
 [ext_resource path="res://assets/key1.png" type="Texture" id=6]
+[ext_resource path="res://assets/Room.gd" type="Script" id=7]
 
 [sub_resource type="TileSet" id=1]
 0/name = "tile2.png 0"
@@ -121,6 +122,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 [node name="Room" type="Node2D" groups=[
 "Room",
 ]]
+script = ExtResource( 7 )
 
 [node name="Floor" type="TileMap" parent="."]
 modulate = Color( 0.254902, 0.254902, 0.254902, 0.278431 )

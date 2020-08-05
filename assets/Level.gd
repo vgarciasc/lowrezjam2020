@@ -30,6 +30,20 @@ func get_key_count():
 					key_count += 1
 	return key_count
 
+func get_tile_at(pos):
+	var room_at = null
+	for room in get_rooms():
+		if room.contains_pos(pos):
+			return room.get_tile_at(pos)
+	return null
+
+func get_rooms():
+	var rooms = []
+	for obj in get_children():
+		if obj.is_in_group("Room"):
+			rooms.append(obj)
+	return rooms
+
 func _on_Elements_replacement_completed():
 	loaded_rooms += 1
 	if loaded_rooms == get_room_count():
