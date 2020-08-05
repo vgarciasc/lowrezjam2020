@@ -4,7 +4,8 @@ signal death
 
 enum VelocityState { LV_0 = 0, LV_1 = 1, LV_2 = 2, LV_3 = 3, LV_4 = 4 }
 
-export var speed = 5;
+export (Array, Color) var velocityModulations;
+export (Array, int) var velocitySpeeds;
 
 onready var CELL_SIZE = $"/root/Main/LevelData".CELL_SIZE;
 onready var level = get_tree().get_nodes_in_group("Level")[0]
@@ -16,6 +17,7 @@ var last_target = Vector2.ZERO
 
 var next_dir = Direction.Dir.NONE
 var curr_vel = VelocityState.LV_0
+var curr_tile_combo = 0
 
 var is_grid_snapped = true
 var is_frozen = false
@@ -23,6 +25,8 @@ var is_frozen = false
 func _process(delta):	
 	dir_ray.set_cast_to(Direction.dir2vec(next_dir) * CELL_SIZE / 2)
 	dir_ray.force_raycast_update()
+	
+	update_velocity()
 	
 	if dir_ray.is_colliding() and !is_frozen:
 		var obj = dir_ray.get_collider()
@@ -56,7 +60,7 @@ func move(dir):
 	
 	var target = position + dir_vec
 	
-	if target != position:		
+	if target != position:
 		if camera.should_move(target):
 			camera.move(dir)
 		
@@ -66,7 +70,7 @@ func move(dir):
 			"position",
 			position,
 			target,
-			1.0 / speed,
+			1.0 / get_curr_speed(),
 			Tween.TRANS_LINEAR)
 		tween.start()
 		
@@ -76,29 +80,47 @@ func move(dir):
 func handle_collision(obj):
 	if obj.is_in_group("Rock"):
 		if curr_vel < obj.resistance:
-			next_dir = Direction.Dir.NONE
+			stop_movement()
 	elif obj.is_in_group("Key"):
 		level.acquire_key(obj)
 	elif obj.is_in_group("Borders"):
-		next_dir = Direction.Dir.NONE
+		stop_movement()
 	elif obj.is_in_group("Hole"):
-		next_dir = Direction.Dir.NONE
-		emit_signal("death")
+		die()
 
 func toggle_freeze(val):
 	is_frozen = val
 	if val:
-		stop()
+		move_vector_left = last_target - global_position
+		$MovementTween.remove(self, "position")
 	else:
-		play()
+		move(next_dir)
 
-func stop():
-	move_vector_left = last_target - global_position
-	$MovementTween.remove(self, "position")
+func die():
+	stop_movement()
+	emit_signal("death")
 
-func play():
-#	$MovementTween.resume(self, "position")
-	move(next_dir)
+func update_velocity():
+	if curr_tile_combo > 24:
+		curr_vel = VelocityState.LV_4
+	elif curr_tile_combo > 18:
+		curr_vel = VelocityState.LV_3
+	elif curr_tile_combo > 12:
+		curr_vel = VelocityState.LV_2
+	elif curr_tile_combo > 6:
+		curr_vel = VelocityState.LV_1
+	else:
+		curr_vel = VelocityState.LV_0
+	
+	modulate = velocityModulations[curr_vel]
+
+func get_curr_speed():
+	return velocitySpeeds[curr_vel]
+
+func stop_movement():
+	curr_tile_combo = 0
+	next_dir = Direction.Dir.NONE
 
 func _on_MovementTween_tween_all_completed():
+	curr_tile_combo += 1
 	is_grid_snapped = true
