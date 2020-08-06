@@ -18,21 +18,18 @@ var last_target = Vector2.ZERO
 var next_dir = Direction.Dir.NONE
 var curr_vel = VelocityState.LV_0
 var curr_tile_combo = 0
+var curr_tile_combo_penalty = 0
 
 var is_grid_snapped = true
 var is_frozen = false
 
 func _process(delta):	
-	dir_ray.set_cast_to(Direction.dir2vec(next_dir) * CELL_SIZE / 2)
-	dir_ray.force_raycast_update()
-	
 	update_velocity()
 	
-	if dir_ray.is_colliding() and !is_frozen:
-		var obj = dir_ray.get_collider()
-		handle_collision(obj)
+	if !is_frozen:
+		handle_collision_enter(next_dir)
 	
-	if is_grid_snapped:
+	if is_grid_snapped and !is_frozen:
 		move(next_dir)
 
 func _input(event):
@@ -77,16 +74,55 @@ func move(dir):
 		last_target = target
 		is_grid_snapped = false
 
-func handle_collision(obj):
+func handle_collision_enter(dir):
+	dir_ray.position = Direction.dir2vec(dir) * CELL_SIZE / 2
+	dir_ray.set_cast_to(Direction.dir2vec(dir) * CELL_SIZE / 2)
+	dir_ray.force_raycast_update()
+	
+	if !dir_ray.is_colliding() or is_frozen:
+		return
+	
+	var obj = dir_ray.get_collider()
+	
 	if obj.is_in_group("Rock"):
 		if curr_vel < obj.resistance:
 			stop_movement()
-	elif obj.is_in_group("Key"):
-		level.acquire_key(obj)
+		else:
+			obj.destroy()
 	elif obj.is_in_group("Borders"):
 		stop_movement()
+
+func handle_collision_arrive():
+	dir_ray.position = Vector2.ZERO
+	dir_ray.set_cast_to(Vector2.DOWN)
+	dir_ray.force_raycast_update()
+	
+	if !dir_ray.is_colliding() or is_frozen:
+		return
+	
+	var obj = dir_ray.get_collider()
+	
+	if obj.is_in_group("Key"):
+		level.acquire_key(obj)
+#	elif obj.is_in_group("SandTile"):
+#		if curr_vel >= 1:
+#			curr_vel -= 1
 	elif obj.is_in_group("Hole"):
-		die()
+		if curr_vel <= obj.resistance:
+			die()
+
+func handle_collision_leave(dir):
+	dir_ray.position = Direction.dir2vec(dir) * CELL_SIZE / 2 * 1.1
+	dir_ray.set_cast_to(Direction.dir2vec(dir) * CELL_SIZE / 2)
+	dir_ray.force_raycast_update()
+	
+	if !dir_ray.is_colliding() or is_frozen:
+		return
+	
+	var obj = dir_ray.get_collider()
+	
+	if obj.is_in_group("BrokenTile"):
+		obj.mark_passed()
 
 func toggle_freeze(val):
 	is_frozen = val
@@ -101,13 +137,15 @@ func die():
 	emit_signal("death")
 
 func update_velocity():
-	if curr_tile_combo > 24:
+	var combo = curr_tile_combo
+	
+	if combo > 24:
 		curr_vel = VelocityState.LV_4
-	elif curr_tile_combo > 18:
+	elif combo > 18:
 		curr_vel = VelocityState.LV_3
-	elif curr_tile_combo > 12:
+	elif combo > 12:
 		curr_vel = VelocityState.LV_2
-	elif curr_tile_combo > 6:
+	elif combo > 6:
 		curr_vel = VelocityState.LV_1
 	else:
 		curr_vel = VelocityState.LV_0
@@ -119,8 +157,12 @@ func get_curr_speed():
 
 func stop_movement():
 	curr_tile_combo = 0
+	curr_tile_combo_penalty = 0
 	next_dir = Direction.Dir.NONE
 
 func _on_MovementTween_tween_all_completed():
 	curr_tile_combo += 1
 	is_grid_snapped = true
+	
+	handle_collision_arrive()
+	handle_collision_leave(Direction.opposite_dir(next_dir))

@@ -3,6 +3,8 @@ extends TileMap
 export (PackedScene) var rock_scene
 export (PackedScene) var key_scene
 export (PackedScene) var hole_scene
+export (PackedScene) var broken_tile_scene
+export (PackedScene) var sand_tile_scene
 
 signal replacement_completed
 
@@ -23,16 +25,20 @@ func replace_tiles():
 		var id = get_cell(pos.x, pos.y)
 		var name = ts.tile_get_name(id)
 		if name == "Rock":
-			replace_tile_with_scene(pos, rock_scene.resource_path)
+			replace_tile_with_scene(pos, rock_scene)
 		elif name == "Key":
-			replace_tile_with_scene(pos, key_scene.resource_path)
+			replace_tile_with_scene(pos, key_scene)
 		elif name == "Hole":
-			replace_tile_with_scene(pos, hole_scene.resource_path)
+			replace_tile_with_scene(pos, hole_scene)
+		elif name == "BrokenTile":
+			replace_tile_with_scene(pos, broken_tile_scene)
+		elif name == "SandTile":
+			replace_tile_with_scene(pos, sand_tile_scene)
 	
 	emit_signal("replacement_completed")
 
 func replace_tile_with_scene(pos, scene):
-	var node = load(scene).instance()
+	var node = scene.instance()
 	node.position = Vector2(
 		pos.x * size_x + (0.5 * size_x),
 		pos.y * size_y + (0.5 * size_y))

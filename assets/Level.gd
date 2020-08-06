@@ -1,5 +1,6 @@
 extends Node2D
 
+onready var player = $"../Player"
 var curr_keys = 0
 var total_keys = 0
 var loaded_rooms = 0
@@ -12,7 +13,7 @@ func acquire_key(key):
 func check_game_over():
 	if curr_keys == total_keys:
 		$"../CanvasLayer".show_victory_display()
-		$"../Player".toggle_freeze(true)
+		player.toggle_freeze(true)
 
 func get_room_count():
 	var room_count = 0

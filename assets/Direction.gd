@@ -14,4 +14,16 @@ static func dir2vec(dir):
 			return Vector2.LEFT
 		Dir.RIGHT:
 			return Vector2.RIGHT
-	return Vector2.ZERO 
+	return Vector2.ZERO
+
+static func opposite_dir(dir):
+	match dir:
+		Dir.UP: 
+			return Dir.DOWN
+		Dir.DOWN:
+			return Dir.UP
+		Dir.LEFT:
+			return Dir.RIGHT
+		Dir.RIGHT:
+			return Dir.LEFT
+	return dir
