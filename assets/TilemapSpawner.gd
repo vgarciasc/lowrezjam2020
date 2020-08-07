@@ -34,6 +34,8 @@ func replace_tiles():
 			replace_tile_with_scene(pos, broken_tile_scene)
 		elif name == "SandTile":
 			replace_tile_with_scene(pos, sand_tile_scene)
+		elif name == "StartingPos":
+			spawn_player_at(pos)
 	
 	emit_signal("replacement_completed")
 
@@ -43,4 +45,13 @@ func replace_tile_with_scene(pos, scene):
 		pos.x * size_x + (0.5 * size_x),
 		pos.y * size_y + (0.5 * size_y))
 	add_child(node)
+	set_cell(pos.x, pos.y, -1)
+
+func spawn_player_at(pos):
+	var player = get_tree().get_nodes_in_group("Player")[0]
+	var room_pos = get_parent().position
+	var tile_pos = Vector2(
+		pos.x * size_x + (0.5 * size_x),
+		pos.y * size_y + (0.5 * size_y))
+	player.start_at_pos(room_pos + tile_pos)
 	set_cell(pos.x, pos.y, -1)

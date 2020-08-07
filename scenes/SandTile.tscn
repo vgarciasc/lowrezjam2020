@@ -6,6 +6,7 @@
 extents = Vector2( 8, 8 )
 
 [node name="SandTile" type="Area2D" groups=[
+"GridElement",
 "SandTile",
 ]]
 

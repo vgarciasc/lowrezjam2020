@@ -56,3 +56,8 @@ func toggle_zoom(val):
 		player.toggle_freeze(false)
 	
 	$"../SwapController".toggle_zoom_lock(false)
+
+func _on_Player_starting_at_pos(pos):
+	position += Vector2(
+		floor(pos.x / 64) * 64,
+		floor(pos.y / 64) * 64)

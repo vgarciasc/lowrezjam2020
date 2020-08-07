@@ -7,6 +7,7 @@
 extents = Vector2( 8, 8 )
 
 [node name="Rock" type="Area2D" groups=[
+"GridElement",
 "Rock",
 ]]
 position = Vector2( 8, 40 )

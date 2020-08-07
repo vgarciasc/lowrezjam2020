@@ -9,6 +9,7 @@ extents = Vector2( 8, 8 )
 
 [node name="BrokenTile" type="Area2D" groups=[
 "BrokenTile",
+"GridElement",
 ]]
 script = ExtResource( 2 )
 hole_scene = ExtResource( 3 )

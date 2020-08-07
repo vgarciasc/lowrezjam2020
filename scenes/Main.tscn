@@ -26,10 +26,24 @@ script = ExtResource( 7 )
 
 [node name="Level" parent="." instance=ExtResource( 2 )]
 
+[node name="Elements" parent="Level/Room1" index="2"]
+tile_data = PoolIntArray( 65538, 7, 0 )
+
+[node name="Elements" parent="Level/Room3" index="2"]
+tile_data = PoolIntArray( 65536, 5, 0, 65538, 3, 0 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 40, 24 )
 [connection signal="zoom_in" from="SwapController" to="Camera2D" method="toggle_zoom" binds= [ true ]]
 [connection signal="zoom_out" from="SwapController" to="Camera2D" method="toggle_zoom" binds= [ false ]]
 [connection signal="death" from="Player" to="CanvasLayer" method="show_game_over_display"]
+[connection signal="starting_at_pos" from="Player" to="Camera2D" method="_on_Player_starting_at_pos"]
 
 [editable path="CanvasLayer"]
+
+[editable path="Level"]
+
+[editable path="Level/Room1"]
+
+[editable path="Level/Room2"]
+
+[editable path="Level/Room3"]

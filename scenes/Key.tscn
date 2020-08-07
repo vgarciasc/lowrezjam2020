@@ -6,6 +6,7 @@
 extents = Vector2( 8, 8 )
 
 [node name="Key" type="Area2D" groups=[
+"GridElement",
 "Key",
 ]]
 position = Vector2( 8, 8 )

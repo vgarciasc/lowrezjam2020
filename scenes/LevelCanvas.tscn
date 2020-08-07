@@ -14,11 +14,8 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="VictoryControl"]
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_top = -21.0
-margin_bottom = 22.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -26,9 +23,9 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="VictoryControl/Panel"]
 anchor_right = 1.0
-margin_top = 6.0
-margin_bottom = 20.0
-text = "nice job!"
+margin_bottom = 44.0
+text = "very
+nice job!"
 align = 1
 valign = 1
 __meta__ = {
@@ -39,7 +36,7 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -20.0
+margin_top = -24.0
 text = "restart"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -54,11 +51,8 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="GameOverControl"]
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_top = -21.0
-margin_bottom = 22.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -68,7 +62,8 @@ __meta__ = {
 anchor_right = 1.0
 margin_top = 6.0
 margin_bottom = 20.0
-text = "you lose"
+text = "you lose
+!!!!"
 align = 1
 valign = 1
 __meta__ = {
@@ -79,7 +74,7 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -20.0
+margin_top = -24.0
 text = "restart"
 __meta__ = {
 "_edit_use_anchors_": false
