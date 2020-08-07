@@ -12,7 +12,8 @@ onready var CELL_SIZE = $"/root/Main/LevelData".CELL_SIZE;
 onready var level = get_tree().get_nodes_in_group("Level")[0]
 onready var camera = $"../Camera2D"
 onready var dir_ray = $MovementRayCast
-onready var last_target = position
+onready var last_grid_pos = position
+onready var last_grid_target = position
 
 var move_vector_left = null
 
@@ -52,11 +53,14 @@ func move(dir):
 	if move_vector_left != null:
 		dir_vec = move_vector_left
 		move_vector_left = null
+	var dir_vec_complement = Direction.dir2vec(dir) * CELL_SIZE - dir_vec
 	
 	var target = position + dir_vec
 	
 	if target != position:
-		if !can_move_to(dir):
+		var last_tile_pos = position - dir_vec_complement
+		
+		if !can_move_from_to(last_tile_pos, last_tile_pos + dir_vec):
 			stop_movement()
 			return
 		
@@ -74,45 +78,22 @@ func move(dir):
 			Tween.TRANS_LINEAR)
 		tween.start()
 		
-		last_target = target
+		last_grid_target = target
 		is_grid_snapped = false
 	else:
 		is_grid_snapped = true
 
-#func handle_collision_enter(dir):
-#	dir_ray.position = Direction.dir2vec(dir) * CELL_SIZE / 2
-#	dir_ray.set_cast_to(Direction.dir2vec(dir) * CELL_SIZE / 2)
-#	dir_ray.force_raycast_update()
-#
-#	if !dir_ray.is_colliding() or is_frozen:
-#		return
-#
-#	var obj = dir_ray.get_collider()
-#
-#	if obj.is_in_group("Rock"):
-#		if curr_vel < obj.resistance:
-#			stop_movement()
-#		else:
-#			obj.destroy()
-
-func can_move_to(dir):
-	dir_ray.position = Direction.dir2vec(dir) * CELL_SIZE / 2
-	dir_ray.set_cast_to(Direction.dir2vec(dir) * CELL_SIZE / 2)
-	dir_ray.force_raycast_update()
-
-	if !dir_ray.is_colliding():
-		return true
-
-	var obj = dir_ray.get_collider()
+func can_move_from_to(from_pos, to_pos):
+	var hits = segment_cast(from_pos, to_pos)
 	
-	if obj.is_in_group("Rock"):
-		if curr_vel < obj.resistance:
+	for collision in hits:
+		var obj = collision.collider
+		if obj.is_in_group("Rock"):
+			if curr_vel < obj.resistance:
+				return false
+		elif obj.is_in_group("Borders") or obj.is_in_group("SolidWall"):
 			return false
-		else:
-			return true
-	elif obj.is_in_group("Borders") or obj.is_in_group("SolidWall"):
-		return false
-	
+		
 	return true
 
 func handle_collision_arrive():
@@ -122,6 +103,11 @@ func handle_collision_arrive():
 		if obj.global_position == arrived_at:
 			if obj.is_in_group("Key"):
 				level.acquire_key(obj)
+			elif obj.is_in_group("Rock"):
+				if curr_vel >= obj.resistance:
+					if curr_vel == obj.resistance:
+						stop_movement()
+					obj.destroy()
 			elif obj.is_in_group("Hole"):
 				if curr_vel <= obj.resistance:
 					die()
@@ -133,7 +119,7 @@ func handle_collision_arrive():
 func toggle_freeze(val):
 	is_frozen = val
 	if val:
-		move_vector_left = last_target - global_position
+		move_vector_left = last_grid_target - global_position
 		$MovementTween.remove(self, "position")
 	else:
 		move(next_dir)
@@ -169,6 +155,21 @@ func stop_movement():
 func start_at_pos(pos):
 	position = pos
 	emit_signal("starting_at_pos", pos)
+
+func segment_cast(begin_pos, end_pos):
+	var space_state = get_world_2d().get_direct_space_state()
+
+	var segment = SegmentShape2D.new()
+	segment.set_a(begin_pos)
+	segment.set_b(end_pos)
+
+	var query = Physics2DShapeQueryParameters.new()
+	query.set_collide_with_areas(true)
+	query.set_shape(segment)
+	query.set_exclude([self])
+
+	var hits = space_state.intersect_shape(query, 32)
+	return hits
 
 func _on_MovementTween_tween_all_completed():
 	curr_tile_combo += 1

@@ -30,6 +30,9 @@ func _input(event):
 	if event.is_action_pressed("change_mode") and !is_zoom_locked:
 		toggle_zoom()
 	
+	if event.is_action_pressed("reset_lvl"):
+		get_tree().reload_current_scene()
+	
 	if event is InputEventMouseButton and !is_zoomed:
 		var hovered_room = null
 		for room in rooms:

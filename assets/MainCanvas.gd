@@ -11,4 +11,4 @@ func show_game_over_display():
 	$GameOverControl.visible = true
 
 func _on_RestartButton_pressed():
-	get_tree().change_scene("res://scenes/Main.tscn")
+	get_tree().reload_current_scene()
