@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/LevelSelection.gd" type="Script" id=1]
+
+[node name="LevelSelection" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0196078, 0.0196078, 0.0196078, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="ColorRect/MarginContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 70.0
+margin_bottom = 62.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 3
+
+[node name="Lvl1" type="Button" parent="ColorRect/MarginContainer/GridContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+text = "1"
+
+[node name="Lvl2" type="Button" parent="ColorRect/MarginContainer/GridContainer"]
+margin_left = 20.0
+margin_right = 40.0
+margin_bottom = 20.0
+text = "2"
+
+[node name="Lvl3" type="Button" parent="ColorRect/MarginContainer/GridContainer"]
+margin_left = 40.0
+margin_right = 60.0
+margin_bottom = 20.0
+text = "3"
+
+[node name="Lvl4" type="Button" parent="ColorRect/MarginContainer/GridContainer"]
+margin_top = 20.0
+margin_right = 20.0
+margin_bottom = 40.0
+text = "4"
+[connection signal="pressed" from="ColorRect/MarginContainer/GridContainer/Lvl1" to="." method="load_level" binds= [ 1 ]]
+[connection signal="pressed" from="ColorRect/MarginContainer/GridContainer/Lvl2" to="." method="load_level" binds= [ 2 ]]
+[connection signal="pressed" from="ColorRect/MarginContainer/GridContainer/Lvl3" to="." method="load_level" binds= [ 3 ]]
+[connection signal="pressed" from="ColorRect/MarginContainer/GridContainer/Lvl4" to="." method="load_level" binds= [ 4 ]]
