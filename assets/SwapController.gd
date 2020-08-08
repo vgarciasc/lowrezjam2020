@@ -36,13 +36,16 @@ func _input(event):
 			var room_rect = Rect2(room.position / 2, Vector2.ONE * 32)
 			if room_rect.has_point(event.position):
 				if room != selected_room:
-					hovered_room = room	
+					hovered_room = room
 			
 		if event.pressed:
 			# Start dragging
 			selected_room = hovered_room
 			selected_room_original_pos = hovered_room.position
 			mouse_offset = hovered_room.position - mouse_pos
+			
+			hovered_room.toggle_hovering(false)
+			selected_room.toggle_swapping(true)
 		else:
 			if hovered_room == null:
 				# Reset
@@ -54,6 +57,7 @@ func _input(event):
 				hovered_room.position = aux_pos
 				
 			mouse_offset = Vector2.ZERO
+			selected_room.toggle_swapping(false)
 			selected_room = null
 
 func toggle_zoom():

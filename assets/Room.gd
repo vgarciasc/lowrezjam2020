@@ -23,3 +23,10 @@ func get_tile_at(target):
 			return tile_pos
 	
 	return null
+
+func toggle_swapping(val):
+	z_index = 1 if val else 0
+	$Floor.toggle_swapping(val)
+
+func toggle_hovering(val):
+	$Foreground.toggle_hovering(val)
