@@ -21,13 +21,14 @@ _global_script_class_icons={
 [application]
 
 config/name="lowrezjam2020"
-run/main_scene="res://scenes/Level_BASE.tscn"
+run/main_scene="res://scenes/LevelSelection.tscn"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/width=64
 window/size/height=64
+window/size/resizable=false
 window/size/test_width=256
 window/size/test_height=256
 window/stretch/mode="viewport"

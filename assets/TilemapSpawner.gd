@@ -5,6 +5,7 @@ export (PackedScene) var key_scene
 export (PackedScene) var hole_scene
 export (PackedScene) var broken_tile_scene
 export (PackedScene) var sand_tile_scene
+export (PackedScene) var spring_scene
 
 signal replacement_completed
 
@@ -34,6 +35,20 @@ func replace_tiles():
 			replace_tile_with_scene(pos, broken_tile_scene)
 		elif name == "SandTile":
 			replace_tile_with_scene(pos, sand_tile_scene)
+		elif name.begins_with("Spring"):
+			var obj = replace_tile_with_scene(pos, spring_scene)
+			var dir = Direction.Dir.NONE
+			var name_id = name.split("_")[1]
+			match name_id:
+				"L": 
+					dir = Direction.Dir.LEFT
+				"R": 
+					dir = Direction.Dir.RIGHT
+				"D": 
+					dir = Direction.Dir.DOWN
+				"U": 
+					dir = Direction.Dir.UP
+			obj.set_direction(dir)
 		elif name == "StartingPos":
 			spawn_player_at(pos)
 	
@@ -46,6 +61,7 @@ func replace_tile_with_scene(pos, scene):
 		pos.y * size_y + (0.5 * size_y))
 	add_child(node)
 	set_cell(pos.x, pos.y, -1)
+	return node
 
 func spawn_player_at(pos):
 	var player = get_tree().get_nodes_in_group("Player")[0]

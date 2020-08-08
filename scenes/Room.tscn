@@ -1,6 +1,7 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://assets/Room.gd" type="Script" id=1]
+[ext_resource path="res://scenes/SandTile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Key.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Rock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/TilemapSpawner.gd" type="Script" id=5]
@@ -10,8 +11,9 @@
 [ext_resource path="res://scenes/Hole.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/Sprites/Walls/Solid Wall.png" type="Texture" id=10]
 [ext_resource path="res://scenes/BrokenTile.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Spring.tscn" type="PackedScene" id=12]
 
-[sub_resource type="TileSet" id=1]
+[sub_resource type="TileSet" id=55]
 0/name = "tile2.png 0"
 0/texture = ExtResource( 6 )
 0/tex_offset = Vector2( 0, 0 )
@@ -559,7 +561,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 script = ExtResource( 1 )
 
 [node name="Floor" type="TileMap" parent="."]
-tile_set = SubResource( 1 )
+tile_set = SubResource( 55 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
@@ -584,3 +586,5 @@ rock_scene = ExtResource( 4 )
 key_scene = ExtResource( 3 )
 hole_scene = ExtResource( 9 )
 broken_tile_scene = ExtResource( 11 )
+sand_tile_scene = ExtResource( 2 )
+spring_scene = ExtResource( 12 )

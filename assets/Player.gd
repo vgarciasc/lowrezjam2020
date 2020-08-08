@@ -109,8 +109,14 @@ func handle_collision_arrive():
 						stop_movement()
 					obj.destroy()
 			elif obj.is_in_group("Hole"):
-				if curr_vel <= obj.resistance:
+				if curr_vel < obj.resistance:
 					die()
+			elif obj.is_in_group("Spring"):
+				next_dir = obj.direction
+			elif obj.is_in_group("SandTile"):
+				# On leave
+				yield($MovementTween, "tween_all_completed")
+				curr_tile_combo_penalty += 6
 			elif obj.is_in_group("BrokenTile"):
 				# On leave
 				yield($MovementTween, "tween_all_completed")
@@ -129,7 +135,7 @@ func die():
 	emit_signal("death")
 
 func update_velocity():
-	var combo = curr_tile_combo
+	var combo = curr_tile_combo - curr_tile_combo_penalty
 	
 	if combo > 24:
 		curr_vel = VelocityState.LV_4
