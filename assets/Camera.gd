@@ -1,5 +1,8 @@
 extends Camera2D
 
+signal zoom_out_finished
+signal zoom_in_finished
+
 export (int) var speed = 5
 
 onready var player = $"../Player"
@@ -53,7 +56,10 @@ func toggle_zoom(val):
 	yield(tween, "tween_all_completed")
 	
 	if val:
+		emit_signal("zoom_in_finished")
 		player.toggle_freeze(false)
+	else:
+		emit_signal("zoom_out_finished")
 	
 	$"../SwapController".toggle_zoom_lock(false)
 

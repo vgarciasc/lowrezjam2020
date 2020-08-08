@@ -13,7 +13,7 @@ onready var level = get_tree().get_nodes_in_group("Level")[0]
 onready var camera = $"../Camera2D"
 onready var dir_ray = $MovementRayCast
 onready var last_grid_pos = position
-onready var last_grid_target = position
+onready var last_grid_target = global_position
 
 var move_vector_left = null
 
@@ -81,6 +81,7 @@ func move(dir):
 		last_grid_target = target
 		is_grid_snapped = false
 	else:
+		last_grid_target = target
 		is_grid_snapped = true
 
 func can_move_from_to(from_pos, to_pos):

@@ -25,6 +25,7 @@ func replace_tiles():
 	for pos in uc:
 		var id = get_cell(pos.x, pos.y)
 		var name = ts.tile_get_name(id)
+		
 		if name == "Rock":
 			replace_tile_with_scene(pos, rock_scene)
 		elif name == "Key":

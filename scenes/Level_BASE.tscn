@@ -28,7 +28,9 @@ script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 [connection signal="zoom_in" from="SwapController" to="Camera2D" method="toggle_zoom" binds= [ true ]]
+[connection signal="zoom_in" from="SwapController" to="Rooms" method="_on_SwapController_zoom_in"]
 [connection signal="zoom_out" from="SwapController" to="Camera2D" method="toggle_zoom" binds= [ false ]]
+[connection signal="zoom_out_finished" from="Camera2D" to="Rooms" method="_on_Camera2D_zoom_out_finished"]
 [connection signal="death" from="Player" to="CanvasLayer" method="show_game_over_display"]
 [connection signal="starting_at_pos" from="Player" to="Camera2D" method="_on_Player_starting_at_pos"]
 

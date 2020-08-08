@@ -49,3 +49,9 @@ func _on_Elements_replacement_completed():
 	loaded_rooms += 1
 	if loaded_rooms == get_room_count():
 		total_keys = get_key_count()
+
+func _on_Camera2D_zoom_out_finished():
+	$InnerBorders.deactivate_lines()
+
+func _on_SwapController_zoom_in():
+	$InnerBorders.activate_lines()

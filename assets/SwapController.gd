@@ -5,7 +5,7 @@ signal zoom_out
 
 onready var camera = $"/root/Main/Camera2D"
 onready var player = $"/root/Main/Player"
-onready var level = null
+onready var rooms = get_tree().get_nodes_in_group("Room")
 
 var selected_room = null
 var selected_room_original_pos = Vector2.ZERO
@@ -13,11 +13,6 @@ var mouse_offset = Vector2.ZERO
 
 var is_zoomed = true
 var is_zoom_locked = false
-
-var rooms = []
-
-func _ready():
-	rooms = get_tree().get_nodes_in_group("Room")
 
 func _process(delta):
 	# Drag
