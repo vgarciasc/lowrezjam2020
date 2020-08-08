@@ -25,6 +25,15 @@ func _input(event):
 	if event.is_action_pressed("change_mode") and !is_zoom_locked:
 		toggle_zoom()
 	
+	if event is InputEventMouseMotion and !is_zoomed:
+		for room in rooms:
+			var room_rect = Rect2(room.position / 2, Vector2.ONE * 32)
+			if room_rect.has_point(event.position):
+				if room != selected_room:
+					room.toggle_hovering(true)
+			else:
+				room.toggle_hovering(false)
+	
 	if event is InputEventMouseButton and !is_zoomed:
 		var hovered_room = null
 		for room in rooms:
@@ -34,25 +43,26 @@ func _input(event):
 					hovered_room = room
 			
 		if event.pressed:
-			# Start dragging
-			selected_room = hovered_room
-			selected_room_original_pos = hovered_room.position
-			mouse_offset = hovered_room.position - mouse_pos
-			
-			hovered_room.toggle_hovering(false)
-			selected_room.toggle_swapping(true)
-		else:
-			if hovered_room == null:
-				# Reset
-				selected_room.position = selected_room_original_pos
-			else: 
-				# Swap
-				var aux_pos = selected_room_original_pos
-				selected_room.position = hovered_room.position
-				hovered_room.position = aux_pos
+			if hovered_room.can_swap():
+				# Start dragging
+				selected_room = hovered_room
+				selected_room_original_pos = hovered_room.position
+				mouse_offset = hovered_room.position - mouse_pos
 				
+				selected_room.toggle_swapping(true)
+		else:
+			if selected_room != null:
+				if hovered_room == null or !hovered_room.can_swap():
+					# Reset
+					selected_room.position = selected_room_original_pos
+				else:
+					# Swap
+					var aux_pos = selected_room_original_pos
+					selected_room.position = hovered_room.position
+					hovered_room.position = aux_pos
+					
+				selected_room.toggle_swapping(false)
 			mouse_offset = Vector2.ZERO
-			selected_room.toggle_swapping(false)
 			selected_room = null
 
 func toggle_zoom():

@@ -4,6 +4,8 @@ export var WIDTH = 4
 export var HEIGHT = 4
 export var CELL_SIZE = 16
 
+export (bool) var swappable = true
+
 #func _ready():
 #	print(get_tile_at(Vector2(25, 39)))
 
@@ -24,9 +26,14 @@ func get_tile_at(target):
 	
 	return null
 
+func can_swap():
+	return swappable
+
 func toggle_swapping(val):
 	z_index = 1 if val else 0
 	$Floor.toggle_swapping(val)
 
 func toggle_hovering(val):
-	$Foreground.toggle_hovering(val)
+	$Foreground.toggle_hovering(val, !can_swap())
+	if !can_swap():
+		$ForegroundEffects/Lock.visible = val

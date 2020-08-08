@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://assets/Room.gd" type="Script" id=1]
 [ext_resource path="res://scenes/SandTile.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/Sprites/floor_2.png" type="Texture" id=14]
 [ext_resource path="res://assets/floor_tileset.tres" type="TileSet" id=15]
 [ext_resource path="res://assets/RoomForeground.gd" type="Script" id=16]
+[ext_resource path="res://assets/Sprites/lock_1.png" type="Texture" id=17]
 
 [sub_resource type="TileSet" id=1]
 0/name = "tile2.png 0"
@@ -597,6 +598,7 @@ tile_data = PoolIntArray( 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 65536, 2, 0, 65537
 script = ExtResource( 13 )
 normal_color = Color( 0.0666667, 0.113725, 0.368627, 1 )
 swapping_color = Color( 0.209167, 0.267276, 0.582031, 1 )
+hovering_color = Color( 0, 0, 0, 1 )
 
 [node name="Walls" type="TileMap" parent="." groups=[
 "SolidWall",
@@ -627,5 +629,16 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -196601, 1, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 9, 1, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 131072, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0 )
 script = ExtResource( 16 )
+__meta__ = {
+"_edit_lock_": true
+}
 normal_color = Color( 1, 1, 1, 0 )
-hovering_color = Color( 0.996078, 0.945098, 0.105882, 0.596078 )
+hovering_color = Color( 0.996078, 0.945098, 0.105882, 0.105882 )
+locked_color = Color( 0, 0, 0, 0.196078 )
+
+[node name="ForegroundEffects" type="Node2D" parent="."]
+
+[node name="Lock" type="Sprite" parent="ForegroundEffects"]
+visible = false
+position = Vector2( 32, 32 )
+texture = ExtResource( 17 )
