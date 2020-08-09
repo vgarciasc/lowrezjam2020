@@ -33,11 +33,22 @@ __meta__ = {
 }
 
 [node name="RestartButton" type="Button" parent="VictoryControl/Panel"]
+visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -24.0
 text = "restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProceedButton" type="Button" parent="VictoryControl/Panel"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -20.0
+text = "proceed"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -80,4 +91,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="VictoryControl/Panel/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="VictoryControl/Panel/ProceedButton" to="." method="_on_ProceedButton_pressed"]
 [connection signal="pressed" from="GameOverControl/Panel/RestartButton" to="." method="_on_RestartButton_pressed"]

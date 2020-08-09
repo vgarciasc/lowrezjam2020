@@ -24,6 +24,10 @@ config/name="lowrezjam2020"
 run/main_scene="res://scenes/LevelSelection.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://assets/global.gd"
+
 [display]
 
 window/size/width=64

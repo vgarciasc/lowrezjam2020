@@ -3,6 +3,8 @@ extends Node2D
 signal zoom_in
 signal zoom_out
 
+export (bool) var can_zoom = true
+
 onready var camera = $"/root/Main/Camera2D"
 onready var player = $"/root/Main/Player"
 onready var rooms = get_tree().get_nodes_in_group("Room")
@@ -22,7 +24,7 @@ func _process(delta):
 func _input(event):
 	var mouse_pos = get_global_mouse_position()
 	
-	if event.is_action_pressed("change_mode") and !is_zoom_locked:
+	if event.is_action_pressed("change_mode") and !is_zoom_locked and can_zoom:
 		toggle_zoom()
 	
 	if event is InputEventMouseMotion and !is_zoomed:
@@ -86,6 +88,9 @@ func prepare_zoom_out():
 			player.global_position = player_global_pos
 
 func prepare_zoom_in():
+	for room in rooms:
+		room.toggle_hovering(false)
+	
 	var player_global_pos = player.global_position
 	player.get_parent().remove_child(player)
 	$"/root/Main".add_child(player)
