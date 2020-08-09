@@ -7,7 +7,7 @@ var loaded_rooms = 0
 
 func acquire_key(key):
 	curr_keys += 1
-	key.queue_free()
+	key.be_acquired()
 	check_game_over()
 
 func check_game_over():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/Sprites/Player Character/Player Character Default.png" type="Texture" id=1]
 [ext_resource path="res://assets/Player.gd" type="Script" id=2]
@@ -8,7 +8,7 @@ extents = Vector2( 8, 8 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "enter_portal"
-length = 1.5
+length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:scale")
 tracks/0/interp = 1
@@ -16,7 +16,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5 ),
+"times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0.990408, 0.990408 ), Vector2( 1e-05, 1e-05 ) ]
@@ -28,11 +28,11 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -11, -0.25, 0, 0.25, 0, 1080, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.2, 1.5 )
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 200, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6 )
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 resource_name = "exit_portal_down"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:scale")
@@ -120,7 +120,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 8, -0.25, 0, 0.359211, -13.1729, 0, -0.477512, -10.2894, 0.25, 0 ),
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.477512, -10.2894, 0.25, 0 ),
 "times": PoolRealArray( 0, 1 )
 }
 tracks/3/type = "bezier"
@@ -177,7 +177,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 8, -0.25, 0, 0.25, 0, 0, -0.477512, -10.2894, 0.25, 0 ),
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.477512, -10.2894, 0.25, 0 ),
 "times": PoolRealArray( 0, 1 )
 }
 tracks/3/type = "bezier"
@@ -260,6 +260,33 @@ tracks/4/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=7]
+resource_name = "fall_in_hole"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 200.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.01, 1e-05 ) ]
+}
+
 [node name="Player" type="Area2D" groups=[
 "Player",
 ]]
@@ -275,7 +302,6 @@ velocitySpeeds = [ 5, 7, 10, 13, 16 ]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.990408, 0.990408 )
 texture = ExtResource( 1 )
 hframes = 4
 frame = 2
@@ -291,8 +317,9 @@ collide_with_areas = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/enter_portal = SubResource( 2 )
-anims/exit_portal_down = SubResource( 7 )
+anims/exit_portal_down = SubResource( 3 )
 anims/exit_portal_left = SubResource( 4 )
 anims/exit_portal_right = SubResource( 5 )
 anims/exit_portal_top = SubResource( 6 )
+anims/fall_in_hole = SubResource( 7 )
 [connection signal="tween_all_completed" from="MovementTween" to="." method="_on_MovementTween_tween_all_completed"]

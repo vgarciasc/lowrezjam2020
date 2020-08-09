@@ -121,7 +121,7 @@ func handle_collision_arrive():
 					obj.destroy()
 			elif obj.is_in_group("Hole"):
 				if curr_vel < obj.resistance:
-					die()
+					fall_inside_hole()
 			elif obj.is_in_group("Spring"):
 				next_dir = obj.direction
 #			elif obj.is_in_group("LockedDoor"):
@@ -216,6 +216,13 @@ func exit_portal(portal):
 	$AnimationPlayer.play(anim)
 	yield($AnimationPlayer, "animation_finished")
 	is_frozen = false
+
+func fall_inside_hole():
+	stop_movement()
+	is_frozen = true
+	$AnimationPlayer.play("fall_in_hole")
+	yield($AnimationPlayer, "animation_finished")
+	die()
 
 func _on_MovementTween_tween_all_completed():
 	curr_tile_combo += 1
