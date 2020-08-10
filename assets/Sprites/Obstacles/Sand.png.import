@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Expanded.png-d254cefd35e0cd0c19924635b0487b74.stex"
+path="res://.import/Sand.png-6abb8f10085f3021fec25e9ae6a6108d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/Obstacles/Expanded.png"
-dest_files=[ "res://.import/Expanded.png-d254cefd35e0cd0c19924635b0487b74.stex" ]
+source_file="res://assets/Sprites/Obstacles/Sand.png"
+dest_files=[ "res://.import/Sand.png-6abb8f10085f3021fec25e9ae6a6108d.stex" ]
 
 [params]
 
