@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Expanded.png-d254cefd35e0cd0c19924635b0487b74.stex"
+path="res://.import/FloorTraps.png-ab2bbf794564918ff01c31d1cd63f1d9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/Obstacles/Expanded.png"
-dest_files=[ "res://.import/Expanded.png-d254cefd35e0cd0c19924635b0487b74.stex" ]
+source_file="res://assets/Sprites/Obstacles/FloorTraps.png"
+dest_files=[ "res://.import/FloorTraps.png-ab2bbf794564918ff01c31d1cd63f1d9.stex" ]
 
 [params]
 
