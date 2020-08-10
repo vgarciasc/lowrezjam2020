@@ -1,9 +1,11 @@
 extends Camera2D
 
+signal zoom_out_finished
+signal zoom_in_finished
+
 export (int) var speed = 5
 
 onready var player = $"../Player"
-onready var level = get_tree().get_nodes_in_group("Level")[0]
 
 func move(dir):
 	$"../SwapController".toggle_zoom_lock(true)
@@ -53,11 +55,75 @@ func toggle_zoom(val):
 	yield(tween, "tween_all_completed")
 	
 	if val:
+		emit_signal("zoom_in_finished")
 		player.toggle_freeze(false)
+	else:
+		emit_signal("zoom_out_finished")
 	
 	$"../SwapController".toggle_zoom_lock(false)
 
 func _on_Player_starting_at_pos(pos):
-	position += Vector2(
-		floor(pos.x / 64) * 64,
-		floor(pos.y / 64) * 64)
+	if $"/root/Global".coming_from_main_menu:
+		run_initial_zoom_in()
+	else:
+		position += Vector2(
+			floor(pos.x / 64) * 64,
+			floor(pos.y / 64) * 64)
+
+func run_initial_zoom_in():
+	$"../SwapController".toggle_zoom_lock(true)
+	$"/root/Global".coming_from_main_menu = false
+	player.is_frozen = true
+	
+	zoom = Vector2.ONE * 100
+	position = Vector2.ONE * 64
+	
+	var tween = $Tween
+	tween.interpolate_property(self, "zoom",
+		zoom, Vector2.ONE * 2.2, 2.5, Tween.EASE_OUT)
+	tween.start()
+	yield(tween, "tween_all_completed")
+	
+	tween.interpolate_property(self, "zoom",
+		zoom, Vector2.ONE * 2, 1.5, Tween.TRANS_LINEAR)
+	tween.start()
+	yield(tween, "tween_all_completed")
+	
+	toggle_zoom(true)
+
+func _on_Player_entered_portal(portal):
+	var tween = $Tween
+	tween.interpolate_property(self, "zoom",
+		zoom, Vector2.ONE * 0.01, 
+		1.0, Tween.EASE_IN)
+	tween.interpolate_property(self, "global_position",
+		global_position, portal.global_position,
+		1.0, Tween.TRANS_LINEAR)
+	tween.start()
+	
+	yield(tween, "tween_all_completed")
+	
+	portal.enter()
+
+func _on_MainMenu_coming_from_level_complete():
+	$"/root/Global".coming_from_level_complete = false
+	
+	var portal = get_node($"/root/Global".last_portal_path_entered)
+	var room_pos = Vector2.ONE * 32 + Vector2(
+		floor(portal.global_position.x / 64) * 64,
+		floor(portal.global_position.y / 64) * 64)
+	
+	zoom = Vector2.ONE * 0.01
+	global_position = portal.global_position
+	
+	var tween = $Tween
+	tween.interpolate_property(self, "zoom",
+		Vector2.ONE * 0.01, Vector2.ONE,
+		1.0, Tween.EASE_OUT)
+	tween.interpolate_property(self, "global_position",
+		global_position, room_pos,
+		1.0, Tween.EASE_OUT)
+	tween.start()
+	yield(tween, "tween_all_completed")
+	yield(get_tree().create_timer(1.0), "timeout")
+	player.exit_portal(portal)

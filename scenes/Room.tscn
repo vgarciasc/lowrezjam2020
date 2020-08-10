@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://assets/Room.gd" type="Script" id=1]
 [ext_resource path="res://scenes/SandTile.tscn" type="PackedScene" id=2]
@@ -12,8 +12,13 @@
 [ext_resource path="res://assets/Sprites/Walls/Solid Wall.png" type="Texture" id=10]
 [ext_resource path="res://scenes/BrokenTile.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/Spring.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/Floor.gd" type="Script" id=13]
+[ext_resource path="res://assets/Sprites/floor_2.png" type="Texture" id=14]
+[ext_resource path="res://assets/floor_tileset.tres" type="TileSet" id=15]
+[ext_resource path="res://assets/RoomForeground.gd" type="Script" id=16]
+[ext_resource path="res://assets/Sprites/lock_1.png" type="Texture" id=17]
 
-[sub_resource type="TileSet" id=55]
+[sub_resource type="TileSet" id=1]
 0/name = "tile2.png 0"
 0/texture = ExtResource( 6 )
 0/tex_offset = Vector2( 0, 0 )
@@ -60,6 +65,29 @@
 1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
+2/name = "floor_2.png 2"
+2/texture = ExtResource( 14 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 16, 16 )
+2/tile_mode = 1
+2/autotile/bitmask_mode = 0
+2/autotile/bitmask_flags = [  ]
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 16, 16 )
+2/autotile/spacing = 0
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -561,11 +589,16 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 script = ExtResource( 1 )
 
 [node name="Floor" type="TileMap" parent="."]
-tile_set = SubResource( 55 )
+modulate = Color( 0.0666667, 0.113725, 0.368627, 1 )
+tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
-tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0 )
+tile_data = PoolIntArray( 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 131072, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0 )
+script = ExtResource( 13 )
+normal_color = Color( 0.0666667, 0.113725, 0.368627, 1 )
+swapping_color = Color( 0.209167, 0.267276, 0.582031, 1 )
+hovering_color = Color( 0, 0, 0, 1 )
 
 [node name="Walls" type="TileMap" parent="." groups=[
 "SolidWall",
@@ -588,3 +621,24 @@ hole_scene = ExtResource( 9 )
 broken_tile_scene = ExtResource( 11 )
 sand_tile_scene = ExtResource( 2 )
 spring_scene = ExtResource( 12 )
+
+[node name="Foreground" type="TileMap" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+tile_set = ExtResource( 15 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -196601, 1, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 9, 1, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 131072, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0 )
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_lock_": true
+}
+normal_color = Color( 1, 1, 1, 0 )
+hovering_color = Color( 0.996078, 0.945098, 0.105882, 0.105882 )
+locked_color = Color( 0, 0, 0, 0.196078 )
+
+[node name="ForegroundEffects" type="Node2D" parent="."]
+
+[node name="Lock" type="Sprite" parent="ForegroundEffects"]
+visible = false
+position = Vector2( 32, 32 )
+texture = ExtResource( 17 )

@@ -1,0 +1,152 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/Level.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Room.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Camera2D.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Portal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/InnerBorders.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/LockedDoor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Level_1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/SwapController.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/outer_border_tileset.tres" type="TileSet" id=10]
+[ext_resource path="res://assets/MainMenu.gd" type="Script" id=11]
+[ext_resource path="res://scenes/LevelData.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Level_2.tscn" type="PackedScene" id=13]
+
+[sub_resource type="DynamicFontData" id=1]
+antialiased = false
+font_path = "res://assets/altopixel.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 14
+extra_spacing_top = 2
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 14
+extra_spacing_top = 2
+font_data = SubResource( 1 )
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource( 11 )
+
+[node name="SwapController" parent="." instance=ExtResource( 9 )]
+can_zoom = false
+
+[node name="LevelData" parent="." instance=ExtResource( 12 )]
+position = Vector2( 40, 24 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 4 )]
+
+[node name="Rooms" type="Node2D" parent="." groups=[
+"Level",
+]]
+script = ExtResource( 1 )
+
+[node name="Room" parent="Rooms" instance=ExtResource( 3 )]
+
+[node name="Walls" parent="Rooms/Room" index="1"]
+tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 65537, 65537, 7, 196613, 65538, 0, 0, 65539, 7, 131072, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 7, 196608, 196608, 7, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0 )
+
+[node name="PlayText" type="Label" parent="Rooms/Room"]
+margin_left = 16.0
+margin_top = 2.0
+margin_right = 48.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 2 )
+text = "PLAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitText" type="Label" parent="Rooms/Room"]
+margin_left = 2.0
+margin_top = 32.9233
+margin_right = 34.0
+margin_bottom = 48.9233
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.592157, 0.592157, 0.592157, 1 )
+text = "EXIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsText" type="Label" parent="Rooms/Room"]
+margin_left = 17.0
+margin_top = 49.9233
+margin_right = 65.0
+margin_bottom = 65.9233
+custom_fonts/font = SubResource( 3 )
+text = "WHO???"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Room2" parent="Rooms" instance=ExtResource( 3 )]
+position = Vector2( -64, 0 )
+
+[node name="Walls" parent="Rooms/Room2" index="1"]
+tile_data = PoolIntArray( 0, 7, 3, 1, 7, 4, 2, 7, 4, 3, 7, 5, 65536, 7, 131075, 65537, 7, 131076, 65538, 7, 131076, 65539, 7, 131077, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 196608, 7, 196611, 196609, 7, 196612, 196610, 7, 196612, 196611, 7, 196613 )
+
+[node name="Room3" parent="Rooms" instance=ExtResource( 3 )]
+position = Vector2( 64, 0 )
+
+[node name="Walls" parent="Rooms/Room3" index="1"]
+tile_data = PoolIntArray( 0, 0, 0, 1, 7, 196611, 2, 7, 196612, 3, 7, 2, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 7, 131072, 131072, 7, 196611, 131073, 7, 196613, 131074, 0, 0, 131075, 7, 131072, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 7, 196608 )
+
+[node name="Room4" parent="Rooms" instance=ExtResource( 3 )]
+position = Vector2( 0, -64 )
+
+[node name="Walls" parent="Rooms/Room4" index="1"]
+tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 65537, 65537, 7, 196613, 65538, 0, 0, 65539, 7, 131072, 131075, 7, 131072, 196608, 7, 0, 196609, 0, 0, 196610, 7, 196611, 196611, 7, 65538 )
+
+[node name="Portal" parent="Rooms/Room4" instance=ExtResource( 5 )]
+position = Vector2( 8, 40 )
+level_scene = ExtResource( 8 )
+player_comes_from = 3
+
+[node name="LockedDoor" parent="Rooms/Room4" instance=ExtResource( 7 )]
+position = Vector2( 40, 24 )
+lvl_id = 1
+
+[node name="Room5" parent="Rooms" instance=ExtResource( 3 )]
+position = Vector2( 0, -128 )
+
+[node name="Walls" parent="Rooms/Room5" index="1"]
+tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 65537, 65537, 7, 196613, 65538, 0, 0, 65539, 7, 131072, 131075, 7, 131072, 196608, 7, 0, 196609, 0, 0, 196610, 7, 196611, 196611, 7, 65538 )
+
+[node name="Portal" parent="Rooms/Room5" instance=ExtResource( 5 )]
+position = Vector2( 8, 40 )
+level_scene = ExtResource( 13 )
+player_comes_from = 3
+
+[node name="LockedDoor" parent="Rooms/Room5" instance=ExtResource( 7 )]
+position = Vector2( 40, 24 )
+lvl_id = 2
+
+[node name="OuterBorders" type="TileMap" parent="Rooms" groups=[
+"Borders",
+]]
+modulate = Color( 0, 0, 0, 1 )
+tile_set = ExtResource( 10 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -524289, 0, 0, -589824, 0, 0, -589823, 0, 0, -589822, 0, 0, -589821, 0, 0, -589820, 0, 0, -458753, 0, 0, -524284, 0, 0, -393217, 0, 0, -458748, 0, 0, -327681, 0, 0, -393212, 0, 0, -262145, 0, 0, -327676, 0, 0, -196609, 0, 0, -262140, 0, 0, -131073, 0, 0, -196604, 0, 0, -65537, 0, 0, -131068, 0, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, 65531, 0, 0, 8, 0, 0, 131067, 0, 0, 65544, 0, 0, 196603, 0, 0, 131080, 0, 0, 262139, 0, 0, 196616, 0, 0, 327675, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0 )
+
+[node name="InnerBorders" parent="Rooms" instance=ExtResource( 6 )]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 40, 24 )
+[connection signal="coming_from_level_complete" from="." to="Camera2D" method="_on_MainMenu_coming_from_level_complete"]
+[connection signal="entered_portal" from="Player" to="Camera2D" method="_on_Player_entered_portal"]
+
+[editable path="Rooms/Room"]
+
+[editable path="Rooms/Room2"]
+
+[editable path="Rooms/Room3"]
+
+[editable path="Rooms/Room4"]
+
+[editable path="Rooms/Room5"]

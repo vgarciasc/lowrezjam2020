@@ -2,18 +2,19 @@ extends Area2D
 
 signal death
 signal starting_at_pos(pos)
+signal entered_portal(portal)
 
 enum VelocityState { LV_0 = 0, LV_1 = 1, LV_2 = 2, LV_3 = 3, LV_4 = 4 }
 
 export (Array, Color) var velocityModulations;
 export (Array, int) var velocitySpeeds;
 
-onready var CELL_SIZE = $"/root/Main/LevelData".CELL_SIZE;
+onready var CELL_SIZE = 16
 onready var level = get_tree().get_nodes_in_group("Level")[0]
 onready var camera = $"../Camera2D"
 onready var dir_ray = $MovementRayCast
 onready var last_grid_pos = position
-onready var last_grid_target = position
+onready var last_grid_target = global_position
 
 var move_vector_left = null
 
@@ -25,7 +26,10 @@ var curr_tile_combo_penalty = 0
 var is_grid_snapped = true
 var is_frozen = false
 
-func _process(delta):	
+func _ready():
+	VisualServer.set_default_clear_color(Color.black)
+
+func _process(delta):
 	update_velocity()
 	
 	if is_grid_snapped and !is_frozen:
@@ -81,6 +85,7 @@ func move(dir):
 		last_grid_target = target
 		is_grid_snapped = false
 	else:
+		last_grid_target = target
 		is_grid_snapped = true
 
 func can_move_from_to(from_pos, to_pos):
@@ -90,6 +95,12 @@ func can_move_from_to(from_pos, to_pos):
 		var obj = collision.collider
 		if obj.is_in_group("Rock"):
 			if curr_vel < obj.resistance:
+				return false
+		if obj.is_in_group("LockedDoor"):
+			if !obj.can_open():
+				return false
+			else:
+				obj.open()
 				return false
 		elif obj.is_in_group("Borders") or obj.is_in_group("SolidWall"):
 			return false
@@ -110,9 +121,14 @@ func handle_collision_arrive():
 					obj.destroy()
 			elif obj.is_in_group("Hole"):
 				if curr_vel < obj.resistance:
-					die()
+					fall_inside_hole()
 			elif obj.is_in_group("Spring"):
 				next_dir = obj.direction
+#			elif obj.is_in_group("LockedDoor"):
+#				if obj.can_open():
+#					obj.open()
+			elif obj.is_in_group("Portal"):
+				enter_portal(obj)
 			elif obj.is_in_group("SandTile"):
 				# On leave
 				yield($MovementTween, "tween_all_completed")
@@ -176,6 +192,37 @@ func segment_cast(begin_pos, end_pos):
 
 	var hits = space_state.intersect_shape(query, 32)
 	return hits
+
+func enter_portal(portal):
+	$AnimationPlayer.play("enter_portal")
+	yield($AnimationPlayer, "animation_finished")
+	emit_signal("entered_portal", portal)
+
+func exit_portal(portal):
+	is_frozen = true
+	var dir = Direction.opposite_dir(portal.player_comes_from)
+	var anim = null
+	match dir:
+		Direction.Dir.LEFT:
+			anim = "exit_portal_left"
+		Direction.Dir.RIGHT:
+			anim = "exit_portal_right"
+		Direction.Dir.UP:
+			anim = "exit_portal_up"
+		Direction.Dir.DOWN:
+			anim = "exit_portal_down"
+	visible = false
+	global_position = portal.global_position + Direction.dir2vec(portal.player_comes_from) * 16
+	$AnimationPlayer.play(anim)
+	yield($AnimationPlayer, "animation_finished")
+	is_frozen = false
+
+func fall_inside_hole():
+	stop_movement()
+	is_frozen = true
+	$AnimationPlayer.play("fall_in_hole")
+	yield($AnimationPlayer, "animation_finished")
+	die()
 
 func _on_MovementTween_tween_all_completed():
 	curr_tile_combo += 1

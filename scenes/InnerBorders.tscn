@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/InnerBorders.gd" type="Script" id=1]
+[ext_resource path="res://scenes/InnerBorderLine.tscn" type="PackedScene" id=2]
+
+[node name="InnerBorders" type="Node2D"]
+script = ExtResource( 1 )
+inner_border_line = ExtResource( 2 )

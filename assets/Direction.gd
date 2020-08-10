@@ -27,3 +27,17 @@ static func opposite_dir(dir):
 		Dir.RIGHT:
 			return Dir.LEFT
 	return dir
+
+static func angle_between(dir1, dir2):
+	var angle = 0
+	match dir2:
+		Dir.UP:    angle = 0
+		Dir.RIGHT: angle = 90
+		Dir.DOWN:  angle = 180
+		Dir.LEFT:  angle = 270
+	match dir1:
+		Dir.UP:    angle -= 0
+		Dir.RIGHT: angle -= 90
+		Dir.DOWN:  angle -= 180
+		Dir.LEFT:  angle -= 270
+	return angle
