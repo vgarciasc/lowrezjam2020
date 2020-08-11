@@ -303,7 +303,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-hframes = 4
+hframes = 28
 frame = 2
 
 [node name="MovementTween" type="Tween" parent="."]

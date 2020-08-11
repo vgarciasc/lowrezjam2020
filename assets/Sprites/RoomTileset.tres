@@ -1,11 +1,10 @@
-[gd_resource type="TileSet" load_steps=18 format=2]
+[gd_resource type="TileSet" load_steps=17 format=2]
 
 [ext_resource path="res://assets/rock2.png" type="Texture" id=1]
 [ext_resource path="res://assets/Sprites/Items/Key.png" type="Texture" id=2]
 [ext_resource path="res://assets/sandTile1.png" type="Texture" id=3]
 [ext_resource path="res://assets/brokenTile1.png" type="Texture" id=4]
 [ext_resource path="res://assets/startingPos1.png" type="Texture" id=5]
-[ext_resource path="res://assets/Sprites/Obstacles/Hole.png" type="Texture" id=6]
 [ext_resource path="res://assets/springs1.png" type="Texture" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -184,7 +183,6 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 } ]
 5/z_index = 0
 6/name = "Hole"
-6/texture = ExtResource( 6 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 0, 0, 16, 16 )
