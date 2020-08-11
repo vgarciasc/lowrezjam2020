@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -12,7 +12,11 @@
 [ext_resource path="res://assets/outer_border_tileset.tres" type="TileSet" id=10]
 [ext_resource path="res://assets/MainMenu.gd" type="Script" id=11]
 [ext_resource path="res://scenes/LevelData.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/Level_2.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Level_6.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Level_3.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/Level_4.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/Level_7.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/Level_5.tscn" type="PackedScene" id=17]
 
 [sub_resource type="DynamicFontData" id=1]
 antialiased = false
@@ -118,12 +122,72 @@ tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 
 
 [node name="Portal" parent="Rooms/Room5" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
-level_scene = ExtResource( 13 )
+level_scene = ExtResource( 14 )
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room5" instance=ExtResource( 7 )]
 position = Vector2( 40, 24 )
-lvl_id = 2
+lvl_id = 3
+
+[node name="Room6" parent="Rooms" instance=ExtResource( 3 )]
+position = Vector2( 0, -192 )
+
+[node name="Walls" parent="Rooms/Room6" index="1"]
+tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 65537, 65537, 7, 196613, 65538, 0, 0, 65539, 7, 131072, 131075, 7, 131072, 196608, 7, 0, 196609, 0, 0, 196610, 7, 196611, 196611, 7, 65538 )
+
+[node name="Portal" parent="Rooms/Room6" instance=ExtResource( 5 )]
+position = Vector2( 8, 40 )
+level_scene = ExtResource( 15 )
+player_comes_from = 3
+
+[node name="LockedDoor" parent="Rooms/Room6" instance=ExtResource( 7 )]
+position = Vector2( 40, 24 )
+lvl_id = 4
+
+[node name="Room7" parent="Rooms" instance=ExtResource( 3 )]
+position = Vector2( 0, -256 )
+
+[node name="Walls" parent="Rooms/Room7" index="1"]
+tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 65537, 65537, 7, 196613, 65538, 0, 0, 65539, 7, 131072, 131075, 7, 131072, 196608, 7, 0, 196609, 0, 0, 196610, 7, 196611, 196611, 7, 65538 )
+
+[node name="Portal" parent="Rooms/Room7" instance=ExtResource( 5 )]
+position = Vector2( 8, 40 )
+level_scene = ExtResource( 17 )
+player_comes_from = 3
+
+[node name="LockedDoor" parent="Rooms/Room7" instance=ExtResource( 7 )]
+position = Vector2( 40, 24 )
+lvl_id = 5
+
+[node name="Room8" parent="Rooms" instance=ExtResource( 3 )]
+position = Vector2( 0, -320 )
+
+[node name="Walls" parent="Rooms/Room8" index="1"]
+tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 65537, 65537, 7, 196613, 65538, 0, 0, 65539, 7, 131072, 131075, 7, 131072, 196608, 7, 0, 196609, 0, 0, 196610, 7, 196611, 196611, 7, 65538 )
+
+[node name="Portal" parent="Rooms/Room8" instance=ExtResource( 5 )]
+position = Vector2( 8, 40 )
+level_scene = ExtResource( 16 )
+player_comes_from = 3
+
+[node name="LockedDoor" parent="Rooms/Room8" instance=ExtResource( 7 )]
+position = Vector2( 40, 24 )
+lvl_id = 7
+
+[node name="Room9" parent="Rooms" instance=ExtResource( 3 )]
+position = Vector2( 0, -384 )
+
+[node name="Walls" parent="Rooms/Room9" index="1"]
+tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 65537, 65537, 7, 196613, 65538, 0, 0, 65539, 7, 131072, 131075, 7, 131072, 196608, 7, 0, 196609, 0, 0, 196610, 7, 196611, 196611, 7, 65538 )
+
+[node name="Portal" parent="Rooms/Room9" instance=ExtResource( 5 )]
+position = Vector2( 8, 40 )
+level_scene = ExtResource( 13 )
+player_comes_from = 3
+
+[node name="LockedDoor" parent="Rooms/Room9" instance=ExtResource( 7 )]
+position = Vector2( 40, 24 )
+lvl_id = 6
 
 [node name="OuterBorders" type="TileMap" parent="Rooms" groups=[
 "Borders",
@@ -132,7 +196,7 @@ modulate = Color( 0, 0, 0, 1 )
 tile_set = ExtResource( 10 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( -524289, 0, 0, -589824, 0, 0, -589823, 0, 0, -589822, 0, 0, -589821, 0, 0, -589820, 0, 0, -458753, 0, 0, -524284, 0, 0, -393217, 0, 0, -458748, 0, 0, -327681, 0, 0, -393212, 0, 0, -262145, 0, 0, -327676, 0, 0, -196609, 0, 0, -262140, 0, 0, -131073, 0, 0, -196604, 0, 0, -65537, 0, 0, -131068, 0, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, 65531, 0, 0, 8, 0, 0, 131067, 0, 0, 65544, 0, 0, 196603, 0, 0, 131080, 0, 0, 262139, 0, 0, 196616, 0, 0, 327675, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0 )
+tile_data = PoolIntArray( -1572865, 0, 0, -1638400, 0, 0, -1638399, 0, 0, -1638398, 0, 0, -1638397, 0, 0, -1638396, 0, 0, -1507329, 0, 0, -1572860, 0, 0, -1441793, 0, 0, -1507324, 0, 0, -1376257, 0, 0, -1441788, 0, 0, -1310721, 0, 0, -1376252, 0, 0, -1245185, 0, 0, -1310716, 0, 0, -1179649, 0, 0, -1245180, 0, 0, -1114113, 0, 0, -1179644, 0, 0, -1048577, 0, 0, -1114108, 0, 0, -983041, 0, 0, -1048572, 0, 0, -917505, 0, 0, -983036, 0, 0, -851969, 0, 0, -917500, 0, 0, -786433, 0, 0, -851964, 0, 0, -720897, 0, 0, -786428, 0, 0, -655361, 0, 0, -720892, 0, 0, -589825, 0, 0, -655356, 0, 0, -524289, 0, 0, -589820, 0, 0, -458753, 0, 0, -524284, 0, 0, -393217, 0, 0, -458748, 0, 0, -327681, 0, 0, -393212, 0, 0, -262145, 0, 0, -327676, 0, 0, -196609, 0, 0, -262140, 0, 0, -131073, 0, 0, -196604, 0, 0, -65537, 0, 0, -131068, 0, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, 65531, 0, 0, 8, 0, 0, 131067, 0, 0, 65544, 0, 0, 196603, 0, 0, 131080, 0, 0, 262139, 0, 0, 196616, 0, 0, 327675, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0 )
 
 [node name="InnerBorders" parent="Rooms" instance=ExtResource( 6 )]
 
@@ -150,3 +214,11 @@ position = Vector2( 40, 24 )
 [editable path="Rooms/Room4"]
 
 [editable path="Rooms/Room5"]
+
+[editable path="Rooms/Room6"]
+
+[editable path="Rooms/Room7"]
+
+[editable path="Rooms/Room8"]
+
+[editable path="Rooms/Room9"]

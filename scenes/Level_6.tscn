@@ -4,11 +4,14 @@
 
 [node name="Main" instance=ExtResource( 1 )]
 
+[node name="LevelData" parent="." index="2"]
+lvl_id = 6
+
 [node name="Walls" parent="Rooms/Room1" index="1"]
 tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 65536, 7, 131078, 65537, 7, 196612, 65538, 7, 131080, 65539, 7, 196613, 131072, 7, 131072, 131074, 7, 131072, 131075, 0, 0, 196608, 7, 196608, 196609, 0, 0, 196610, 7, 65537, 196611, 7, 196613 )
 
 [node name="Elements" parent="Rooms/Room1" index="2"]
-tile_data = PoolIntArray( 131073, 5, 0 )
+tile_data = PoolIntArray( 0, 7, 0, 131073, 5, 0 )
 
 [node name="Walls" parent="Rooms/Room2" index="1"]
 tile_data = PoolIntArray( 1, 7, 65536, 3, 0, 0, 65537, 7, 196616, 65538, 7, 196612, 65539, 7, 196613, 131073, 7, 131072, 196608, 7, 196611, 196609, 7, 65538, 196611, 7, 0 )

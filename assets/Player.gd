@@ -194,6 +194,7 @@ func segment_cast(begin_pos, end_pos):
 	return hits
 
 func enter_portal(portal):
+	stop_movement()
 	$AnimationPlayer.play("enter_portal")
 	yield($AnimationPlayer, "animation_finished")
 	emit_signal("entered_portal", portal)
