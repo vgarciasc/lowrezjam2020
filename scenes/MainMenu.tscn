@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -22,13 +22,18 @@
 antialiased = false
 font_path = "res://assets/altopixel.ttf"
 
+[sub_resource type="DynamicFont" id=4]
+size = 7
+extra_spacing_top = 2
+font_data = SubResource( 1 )
+
 [sub_resource type="DynamicFont" id=2]
-size = 14
+size = 7
 extra_spacing_top = 2
 font_data = SubResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 14
+size = 7
 extra_spacing_top = 2
 font_data = SubResource( 1 )
 
@@ -55,34 +60,36 @@ tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 
 
 [node name="PlayText" type="Label" parent="Rooms/Room"]
 margin_left = 16.0
-margin_top = 2.0
-margin_right = 48.0
-margin_bottom = 18.0
-custom_fonts/font = SubResource( 2 )
+margin_right = 32.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.12549, 0.188235, 0.52549, 1 )
 text = "PLAY"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ExitText" type="Label" parent="Rooms/Room"]
-margin_left = 2.0
-margin_top = 32.9233
-margin_right = 34.0
-margin_bottom = 48.9233
+margin_top = 48.0
+margin_right = 16.0
+margin_bottom = 64.0
+rect_rotation = -90.0
 custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.592157, 0.592157, 0.592157, 1 )
+custom_colors/font_color = Color( 0.12549, 0.188235, 0.52549, 1 )
 text = "EXIT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CreditsText" type="Label" parent="Rooms/Room"]
-margin_left = 17.0
-margin_top = 49.9233
-margin_right = 65.0
-margin_bottom = 65.9233
+margin_left = 64.0
+margin_top = 48.0
+margin_right = 80.0
+margin_bottom = 64.0
+rect_rotation = 90.0
 custom_fonts/font = SubResource( 3 )
-text = "WHO???"
+custom_colors/font_color = Color( 0.12549, 0.188235, 0.52549, 1 )
+text = "WHO?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
