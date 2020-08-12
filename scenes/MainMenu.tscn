@@ -22,17 +22,17 @@
 antialiased = false
 font_path = "res://assets/altopixel.ttf"
 
-[sub_resource type="DynamicFont" id=4]
-size = 7
-extra_spacing_top = 2
-font_data = SubResource( 1 )
-
 [sub_resource type="DynamicFont" id=2]
 size = 7
 extra_spacing_top = 2
 font_data = SubResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
+size = 7
+extra_spacing_top = 2
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 7
 extra_spacing_top = 2
 font_data = SubResource( 1 )
@@ -62,7 +62,7 @@ tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 
 margin_left = 16.0
 margin_right = 32.0
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.12549, 0.188235, 0.52549, 1 )
 text = "PLAY"
 __meta__ = {
@@ -74,7 +74,7 @@ margin_top = 48.0
 margin_right = 16.0
 margin_bottom = 64.0
 rect_rotation = -90.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.12549, 0.188235, 0.52549, 1 )
 text = "EXIT"
 __meta__ = {
@@ -87,7 +87,7 @@ margin_top = 48.0
 margin_right = 80.0
 margin_bottom = 64.0
 rect_rotation = 90.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.12549, 0.188235, 0.52549, 1 )
 text = "WHO?"
 __meta__ = {
@@ -219,6 +219,8 @@ position = Vector2( 40, 24 )
 [editable path="Rooms/Room3"]
 
 [editable path="Rooms/Room4"]
+
+[editable path="Rooms/Room4/Portal"]
 
 [editable path="Rooms/Room5"]
 

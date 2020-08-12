@@ -30,7 +30,7 @@ func can_swap():
 	return swappable
 
 func toggle_swapping(val):
-	z_index = 1 if val else 0
+	z_index = 2 if val else 0
 	$Floor.toggle_swapping(val)
 
 func toggle_hovering(val):
