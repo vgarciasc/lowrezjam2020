@@ -24,7 +24,8 @@ func _process(delta):
 func _input(event):
 	var mouse_pos = get_global_mouse_position()
 	
-	if event.is_action_pressed("change_mode") and !is_zoom_locked and can_zoom:
+	if event.is_action_pressed("change_mode") and !is_zoom_locked and can_zoom \
+		and selected_room == null:
 		toggle_zoom()
 	
 	if event is InputEventMouseMotion and !is_zoomed:

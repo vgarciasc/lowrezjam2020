@@ -6,11 +6,11 @@
 [ext_resource path="res://assets/dynamic_font1.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/style_box_1.tres" type="StyleBox" id=5]
 
-[sub_resource type="Theme" id=4]
+[sub_resource type="Theme" id=1]
 default_font = ExtResource( 4 )
 Button/colors/MyButton = Color( 0.368627, 0.368627, 0.368627, 1 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.227451, 0.211765, 0.211765, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -19,7 +19,7 @@ border_width_bottom = 1
 border_color = Color( 1, 1, 1, 0.243137 )
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id=13]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -28,7 +28,7 @@ border_width_bottom = 1
 border_color = Color( 1, 1, 1, 0.243137 )
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -37,7 +37,7 @@ border_width_bottom = 1
 border_color = Color( 1, 1, 1, 0.243137 )
 anti_aliasing = false
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 length = 2.4
 loop = true
 tracks/0/type = "value"
@@ -65,7 +65,7 @@ tracks/1/keys = {
 "values": [ Vector2( 40, 16 ), Vector2( 40, 15 ), Vector2( 40, 16 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=6]
 resource_name = "start"
 length = 3.4
 tracks/0/type = "value"
@@ -189,7 +189,7 @@ tracks/9/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="StyleBoxFlat" id=10]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -198,7 +198,7 @@ border_width_bottom = 1
 border_color = Color( 1, 1, 1, 0.243137 )
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id=14]
+[sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -207,7 +207,7 @@ border_width_bottom = 1
 border_color = Color( 1, 1, 1, 0.243137 )
 anti_aliasing = false
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=9]
 length = 3.7
 tracks/0/type = "value"
 tracks/0/path = NodePath("PlayerSprite:position")
@@ -396,7 +396,6 @@ __meta__ = {
 }
 
 [node name="LevelComplete" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -415,6 +414,7 @@ __meta__ = {
 
 [node name="ProceedButton" type="Button" parent="LevelComplete/ColorRect"]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -422,10 +422,10 @@ margin_left = 8.0
 margin_top = -18.0
 margin_right = -8.0
 margin_bottom = -5.0
-theme = SubResource( 4 )
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/focus = SubResource( 7 )
+theme = SubResource( 1 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
 custom_styles/normal = ExtResource( 5 )
 custom_fonts/font = ExtResource( 4 )
 text = "PROCEED"
@@ -435,19 +435,20 @@ __meta__ = {
 
 [node name="PlayerSprite" type="Sprite" parent="LevelComplete/ColorRect"]
 visible = false
-position = Vector2( -8, 16 )
+position = Vector2( -1.6, 16 )
 texture = ExtResource( 2 )
-hframes = 4
+hframes = 28
 
 [node name="KeySprite" type="Sprite" parent="LevelComplete/ColorRect"]
 visible = false
-position = Vector2( 40, 16 )
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 40, 12 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelComplete/ColorRect"]
 playback_speed = 2.0
-anims/idle_loop = SubResource( 8 )
-anims/start = SubResource( 9 )
+anims/idle_loop = SubResource( 5 )
+anims/start = SubResource( 6 )
 
 [node name="LevelFailed" type="Control" parent="."]
 visible = false
@@ -477,10 +478,10 @@ margin_left = 8.0
 margin_top = -18.0
 margin_right = -8.0
 margin_bottom = -5.0
-theme = SubResource( 4 )
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 10 )
-custom_styles/focus = SubResource( 14 )
+theme = SubResource( 1 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
 custom_styles/normal = ExtResource( 5 )
 custom_fonts/font = ExtResource( 4 )
 text = "RESTART"
@@ -493,12 +494,12 @@ visible = false
 position = Vector2( 32, -18 )
 rotation = 1.1088
 texture = ExtResource( 2 )
-hframes = 4
+hframes = 28
 frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LevelFailed/ColorRect"]
 playback_speed = 2.0
-anims/start = SubResource( 12 )
+anims/start = SubResource( 9 )
 [connection signal="pressed" from="VictoryControl/Panel/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="VictoryControl/Panel/ProceedButton" to="." method="_on_ProceedButton_pressed"]
 [connection signal="pressed" from="GameOverControl/Panel/RestartButton" to="." method="_on_RestartButton_pressed"]
