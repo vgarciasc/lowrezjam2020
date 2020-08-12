@@ -185,6 +185,8 @@ func stop_movement():
 	curr_tile_combo = 0
 	curr_tile_combo_penalty = 0
 	next_dir = Direction.Dir.NONE
+	if $AnimationPlayer.current_animation.begins_with("move"):
+		$AnimationPlayer.stop(true)
 
 func play_bump_anim(dir):
 	var anim = "bump_" + Direction.dir2string(dir)
@@ -201,7 +203,7 @@ func play_idle_anim(dir):
 		return
 	
 	var anim = "idle_" + Direction.dir2string(dir)
-	if $AnimationPlayer.current_animation != anim and not $AnimationPlayer.current_animation.begins_with("bump"):
+	if $AnimationPlayer.current_animation == "":
 		$AnimationPlayer.play(anim)
 
 func pause_anim():
@@ -240,20 +242,12 @@ func enter_portal(portal):
 func exit_portal(portal):
 	is_frozen = true
 	var dir = Direction.opposite_dir(portal.player_comes_from)
-	var anim = null
-	match dir:
-		Direction.Dir.LEFT:
-			anim = "exit_portal_left"
-		Direction.Dir.RIGHT:
-			anim = "exit_portal_right"
-		Direction.Dir.UP:
-			anim = "exit_portal_up"
-		Direction.Dir.DOWN:
-			anim = "exit_portal_down"
+	var anim = "exit_portal_" + Direction.dir2string(dir)
 	visible = false
 	global_position = portal.global_position + Direction.dir2vec(portal.player_comes_from) * 16
 	$AnimationPlayer.play(anim)
 	yield($AnimationPlayer, "animation_finished")
+	$AnimationPlayer.play("idle_" + Direction.dir2string(portal.player_comes_from))
 	is_frozen = false
 
 func fall_inside_hole():
