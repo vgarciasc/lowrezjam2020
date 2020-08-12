@@ -1,5 +1,7 @@
 extends Camera2D
 
+signal zoom_out_started
+signal zoom_in_started
 signal zoom_out_finished
 signal zoom_in_finished
 
@@ -34,6 +36,7 @@ func toggle_zoom(val):
 
 	var tween = $Tween
 	if val: #ZOOM IN
+		emit_signal("zoom_in_started")
 		tween.interpolate_property(self, "zoom",
 			Vector2.ONE * 2, Vector2.ONE, 0.5, Tween.EASE_OUT)
 		tween.interpolate_property(self, "position",
@@ -44,6 +47,7 @@ func toggle_zoom(val):
 					floor((player.global_position.y - 8) / 64) * 64),
 			0.5, Tween.EASE_OUT)
 	else: #ZOOM OUT
+		emit_signal("zoom_out_started")
 		player.toggle_freeze(true)
 		tween.interpolate_property(self, "zoom",
 			Vector2.ONE, Vector2.ONE * 2, 0.5, Tween.EASE_OUT)
