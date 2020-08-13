@@ -10,14 +10,15 @@ export (Array, Color) var velocityModulations;
 export (Array, int) var velocitySpeeds;
 
 onready var CELL_SIZE = 16
-onready var level = get_tree().get_nodes_in_group("Level")[0]
-onready var camera = $"../Camera2D"
+onready var level = Global.safe_first_in_group(get_tree(), "Level")
+onready var camera = Global.safe_first_in_group(get_tree(), "Camera")
 onready var dir_ray = $MovementRayCast
 onready var last_grid_pos = position
 onready var last_grid_target = global_position
 
 var move_vector_left = null
 
+var last_dir = Direction.Dir.NONE
 var next_dir = Direction.Dir.NONE
 var curr_vel = VelocityState.LV_0
 var curr_tile_combo = 0
@@ -25,12 +26,19 @@ var curr_tile_combo_penalty = 0
 
 var is_grid_snapped = true
 var is_frozen = false
+var is_anim_frozen = false
 
 func _ready():
 	VisualServer.set_default_clear_color(Color.black)
+	$AnimationPlayer.play("idle_down")
+	camera.connect("zoom_in_finished", self, "unpause_anim")
+	camera.connect("zoom_out_started", self, "pause_anim")
 
 func _process(delta):
 	update_velocity()
+	
+	if next_dir == Direction.Dir.NONE and not is_anim_frozen:
+		play_idle_anim(last_dir)
 	
 	if is_grid_snapped and !is_frozen:
 		move(next_dir)
@@ -65,6 +73,8 @@ func move(dir):
 		var last_tile_pos = position - dir_vec_complement
 		
 		if !can_move_from_to(last_tile_pos, last_tile_pos + dir_vec):
+			play_bump_anim(next_dir)
+			last_dir = next_dir
 			stop_movement()
 			return
 		
@@ -81,6 +91,8 @@ func move(dir):
 			1.0 * speed_normalizer / get_curr_speed(),
 			Tween.TRANS_LINEAR)
 		tween.start()
+		
+		play_move_anim(next_dir)
 		
 		last_grid_target = target
 		is_grid_snapped = false
@@ -173,6 +185,34 @@ func stop_movement():
 	curr_tile_combo = 0
 	curr_tile_combo_penalty = 0
 	next_dir = Direction.Dir.NONE
+	if $AnimationPlayer.current_animation.begins_with("move"):
+		$AnimationPlayer.stop(true)
+
+func play_bump_anim(dir):
+	var anim = "bump_" + Direction.dir2string(dir)
+	$AnimationPlayer.play(anim, -1, 3.0)
+	$AnimationPlayer.advance(0)
+
+func play_move_anim(dir):
+	var anim = "move_" + Direction.dir2string(dir)
+	if $AnimationPlayer.current_animation != anim:
+		$AnimationPlayer.play(anim)
+
+func play_idle_anim(dir):
+	if dir == Direction.Dir.NONE:
+		return
+	
+	var anim = "idle_" + Direction.dir2string(dir)
+	if $AnimationPlayer.current_animation == "":
+		$AnimationPlayer.play(anim)
+
+func pause_anim():
+	is_anim_frozen = true
+	$AnimationPlayer.stop(false)
+
+func unpause_anim():
+	is_anim_frozen = false
+	$AnimationPlayer.play("", -1)
 
 func start_at_pos(pos):
 	position = pos
@@ -202,20 +242,12 @@ func enter_portal(portal):
 func exit_portal(portal):
 	is_frozen = true
 	var dir = Direction.opposite_dir(portal.player_comes_from)
-	var anim = null
-	match dir:
-		Direction.Dir.LEFT:
-			anim = "exit_portal_left"
-		Direction.Dir.RIGHT:
-			anim = "exit_portal_right"
-		Direction.Dir.UP:
-			anim = "exit_portal_up"
-		Direction.Dir.DOWN:
-			anim = "exit_portal_down"
+	var anim = "exit_portal_" + Direction.dir2string(dir)
 	visible = false
 	global_position = portal.global_position + Direction.dir2vec(portal.player_comes_from) * 16
 	$AnimationPlayer.play(anim)
 	yield($AnimationPlayer, "animation_finished")
+	$AnimationPlayer.play("idle_" + Direction.dir2string(portal.player_comes_from))
 	is_frozen = false
 
 func fall_inside_hole():

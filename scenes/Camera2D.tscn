@@ -2,7 +2,9 @@
 
 [ext_resource path="res://assets/Camera.gd" type="Script" id=1]
 
-[node name="Camera2D" type="Camera2D"]
+[node name="Camera2D" type="Camera2D" groups=[
+"Camera",
+]]
 position = Vector2( 32, 32 )
 current = true
 script = ExtResource( 1 )

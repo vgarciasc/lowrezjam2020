@@ -41,3 +41,11 @@ static func angle_between(dir1, dir2):
 		Dir.DOWN:  angle -= 180
 		Dir.LEFT:  angle -= 270
 	return angle
+
+static func dir2string(dir):
+	match dir:
+		Dir.LEFT: return "left"
+		Dir.RIGHT: return "right"
+		Dir.UP: return "up"
+		Dir.DOWN: return "down"
+		_: return "null"

@@ -16,7 +16,7 @@
 [ext_resource path="res://assets/Sprites/floor_2.png" type="Texture" id=14]
 [ext_resource path="res://assets/floor_tileset.tres" type="TileSet" id=15]
 [ext_resource path="res://assets/RoomForeground.gd" type="Script" id=16]
-[ext_resource path="res://assets/Sprites/lock_1.png" type="Texture" id=17]
+[ext_resource path="res://assets/Sprites/UI/Lock1.png" type="Texture" id=17]
 
 [sub_resource type="TileSet" id=1]
 0/name = "tile2.png 0"
@@ -641,4 +641,5 @@ locked_color = Color( 0, 0, 0, 0.196078 )
 [node name="Lock" type="Sprite" parent="ForegroundEffects"]
 visible = false
 position = Vector2( 32, 32 )
+z_index = 1
 texture = ExtResource( 17 )

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Lock1.png-ce24639e494f65c4915432293a35edef.stex"
+path="res://.import/Portal.png-0ead64738b911541012a00b3bb34a107.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/UI/Lock1.png"
-dest_files=[ "res://.import/Lock1.png-ce24639e494f65c4915432293a35edef.stex" ]
+source_file="res://assets/Sprites/Items/Portal.png"
+dest_files=[ "res://.import/Portal.png-0ead64738b911541012a00b3bb34a107.stex" ]
 
 [params]
 
