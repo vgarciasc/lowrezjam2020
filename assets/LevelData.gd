@@ -5,6 +5,8 @@ export (int) var lvl_id = -1
 
 func _input(event):
 	if event.is_action_pressed("reset_lvl"):
+		$"../CanvasLayer".toggle_blackscreen(true)
+		yield(get_tree().create_timer(0.2), "timeout")
 		get_tree().reload_current_scene()
 	
 	if event.is_action_pressed("go_to_lvl_select"):

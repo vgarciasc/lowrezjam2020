@@ -1,9 +1,5 @@
 extends CanvasLayer
 
-func _ready():
-	$VictoryControl.visible = false
-	$GameOverControl.visible = false
-
 func show_victory_display():
 #	$VictoryControl.visible = true
 	$LevelComplete.visible = true
@@ -28,3 +24,6 @@ func completed_lvl_to_main_menu():
 
 func _on_ProceedButton_pressed():
 	completed_lvl_to_main_menu()
+
+func toggle_blackscreen(val):
+	$Blackscreen.visible = val
