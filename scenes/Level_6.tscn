@@ -20,13 +20,13 @@ tile_data = PoolIntArray( 1, 7, 65536, 3, 0, 0, 65537, 7, 196616, 65538, 7, 1966
 tile_data = PoolIntArray( 2, 5, 0 )
 
 [node name="Walls" parent="Rooms/Room3" index="1"]
-tile_data = PoolIntArray( 0, 7, 196611, 1, 7, 196612, 2, 7, 2, 65538, 7, 196614, 65539, 7, 196613, 131072, 7, 65536, 131074, 7, 196608, 196608, 7, 65537, 196609, 7, 196613, 196610, 0, 0, 196611, 7, 0 )
+tile_data = PoolIntArray( 0, 7, 196611, 1, 7, 196612, 2, 7, 2, 65538, 7, 196616, 65539, 7, 196613, 131072, 7, 65536, 131074, 7, 196608, 196608, 7, 65537, 196609, 7, 196613, 196610, 0, 0, 196611, 7, 0 )
 
 [node name="Elements" parent="Rooms/Room3" index="2"]
 tile_data = PoolIntArray( 131075, 5, 0 )
 
 [node name="Walls" parent="Rooms/Room4" index="1"]
-tile_data = PoolIntArray( 0, 7, 65536, 2, 7, 196611, 3, 7, 2, 65536, 7, 196608, 65539, 7, 131072, 131073, 7, 196611, 131074, 7, 131074, 131075, 7, 65538, 196610, 7, 196608 )
+tile_data = PoolIntArray( 0, 7, 65536, 3, 7, 65536, 65536, 7, 196608, 65539, 7, 131072, 131073, 7, 196611, 131074, 7, 131074, 131075, 7, 65538, 196610, 7, 196608 )
 
 [node name="Elements" parent="Rooms/Room4" index="2"]
 tile_data = PoolIntArray( 196609, 5, 0 )
