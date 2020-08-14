@@ -141,6 +141,8 @@ func handle_collision_arrive():
 #					obj.open()
 			elif obj.is_in_group("Portal"):
 				enter_portal(obj)
+			elif obj.is_in_group("QuitArea"):
+				get_tree().quit()
 			elif obj.is_in_group("SandTile"):
 				# On leave
 				yield($MovementTween, "tween_all_completed")
