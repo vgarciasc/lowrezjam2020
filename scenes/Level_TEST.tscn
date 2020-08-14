@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/Level_BASE.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/trail1.png" type="Texture" id=2]
 
 [node name="Main" instance=ExtResource( 1 )]
 
@@ -21,6 +22,11 @@ tile_data = PoolIntArray( 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 9, 1, 0, 65536, 2,
 
 [node name="Walls" parent="Rooms/Room4" index="1"]
 tile_data = PoolIntArray( 1, 7, 196611, 2, 7, 2, 65538, 7, 196608, 131072, 7, 196611, 131073, 7, 196613 )
+
+[node name="Trail" type="Sprite" parent="." index="5"]
+position = Vector2( 8, 8 )
+scale = Vector2( 0.5, 0.6 )
+texture = ExtResource( 2 )
 
 [editable path="CanvasLayer"]
 
