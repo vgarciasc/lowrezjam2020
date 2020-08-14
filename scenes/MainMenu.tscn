@@ -45,6 +45,7 @@ can_zoom = false
 
 [node name="LevelData" parent="." instance=ExtResource( 12 )]
 position = Vector2( 40, 24 )
+can_reset = false
 
 [node name="Camera2D" parent="." instance=ExtResource( 4 )]
 

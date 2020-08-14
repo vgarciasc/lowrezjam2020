@@ -1,8 +1,11 @@
 extends CanvasLayer
 
 func _ready():
-	$VictoryControl.visible = false
-	$GameOverControl.visible = false
+	if $"/root/Global".resetting_lvl:
+		$"/root/Global".resetting_lvl = false
+		toggle_blackscreen(true)
+		yield(get_tree().create_timer(0.05), "timeout")
+		toggle_blackscreen(false)
 
 func show_victory_display():
 #	$VictoryControl.visible = true
@@ -28,3 +31,6 @@ func completed_lvl_to_main_menu():
 
 func _on_ProceedButton_pressed():
 	completed_lvl_to_main_menu()
+
+func toggle_blackscreen(val):
+	$Blackscreen.visible = val

@@ -85,6 +85,8 @@ func run_initial_zoom_in():
 	var tween = $Tween
 	tween.interpolate_property(self, "zoom",
 		zoom, Vector2.ONE * 2.2, 2.5, Tween.EASE_OUT)
+	tween.interpolate_property($"../LevelData/LevelLabel", "modulate",
+		Color.transparent, Color.white, 0.5, Tween.EASE_OUT)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	
@@ -98,7 +100,7 @@ func run_initial_zoom_in():
 func _on_Player_entered_portal(portal):
 	var tween = $Tween
 	tween.interpolate_property(self, "zoom",
-		zoom, Vector2.ONE * 0.01, 
+		zoom, Vector2.ONE * 0.001, 
 		1.0, Tween.EASE_IN)
 	tween.interpolate_property(self, "global_position",
 		global_position, portal.global_position,
