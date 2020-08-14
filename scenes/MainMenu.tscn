@@ -116,6 +116,7 @@ tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 
 [node name="Portal" parent="Rooms/Room4" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
 level_scene = ExtResource( 8 )
+level_id = 1
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room4" instance=ExtResource( 7 )]
@@ -131,6 +132,7 @@ tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 
 [node name="Portal" parent="Rooms/Room5" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
 level_scene = ExtResource( 14 )
+level_id = 2
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room5" instance=ExtResource( 7 )]
@@ -146,6 +148,7 @@ tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 
 [node name="Portal" parent="Rooms/Room6" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
 level_scene = ExtResource( 15 )
+level_id = 3
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room6" instance=ExtResource( 7 )]
@@ -161,6 +164,7 @@ tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 
 [node name="Portal" parent="Rooms/Room7" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
 level_scene = ExtResource( 17 )
+level_id = 4
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room7" instance=ExtResource( 7 )]
@@ -176,6 +180,7 @@ tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 
 [node name="Portal" parent="Rooms/Room8" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
 level_scene = ExtResource( 16 )
+level_id = 5
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room8" instance=ExtResource( 7 )]
@@ -191,6 +196,7 @@ tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 
 [node name="Portal" parent="Rooms/Room9" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
 level_scene = ExtResource( 13 )
+level_id = 6
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room9" instance=ExtResource( 7 )]
