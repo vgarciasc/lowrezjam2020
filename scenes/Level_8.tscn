@@ -11,7 +11,7 @@ hovering_color = Color( 0, 0, 0, 1 )
 tile_data = PoolIntArray( 1, 7, 65536, 65537, 7, 131072, 65538, 0, 0, 65539, 0, 0, 131073, 7, 131072, 196609, 7, 196608 )
 
 [node name="Elements" parent="Rooms/Room1" index="2"]
-tile_data = PoolIntArray( 65538, 11, 0, 131074, 10, 0 )
+tile_data = PoolIntArray( 0, 7, 0, 65538, 11, 0, 131074, 10, 0 )
 
 [node name="Floor" parent="Rooms/Room2" index="0"]
 hovering_color = Color( 0, 0, 0, 1 )
