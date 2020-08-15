@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/Sprites/UI/Shaded.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Shader overlay.gd" type="Script" id=5]
 
-[sub_resource type="Shader" id=3]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 void vertex() {
@@ -15,10 +15,10 @@ void vertex() {
 }"
 custom_defines = ""
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
 
 uniform float size_x = 0.001;
@@ -35,8 +35,8 @@ void fragment() {
 }"
 custom_defines = ""
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
 shader_param/size_x = 0.001
 shader_param/size_y = 0.001
 shader_param/quantity = 1.0
@@ -51,7 +51,7 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Title" type="TextureRect" parent="CanvasLayer"]
-material = SubResource( 4 )
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 3 )
@@ -60,7 +60,7 @@ __meta__ = {
 }
 
 [node name="Shader overlay" type="TextureRect" parent="CanvasLayer"]
-material = SubResource( 2 )
+material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 4 )

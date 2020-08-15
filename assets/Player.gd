@@ -34,9 +34,7 @@ func _ready():
 	camera.connect("zoom_in_finished", self, "unpause_anim")
 	camera.connect("zoom_out_started", self, "pause_anim")
 
-func _process(delta):
-	update_velocity()
-	
+func _process(delta):	
 	if next_dir == Direction.Dir.NONE and not is_anim_frozen:
 		play_idle_anim(last_dir)
 	
@@ -61,6 +59,8 @@ func _input(event):
 		next_dir = dir
 
 func move(dir):
+	update_velocity()
+	
 	var dir_vec = Direction.dir2vec(dir) * CELL_SIZE
 	if move_vector_left != null:
 		dir_vec = move_vector_left
@@ -163,6 +163,9 @@ func die():
 func update_velocity():
 	var combo = curr_tile_combo - curr_tile_combo_penalty
 	
+	if combo == 8:
+		$"/root/AudioPlayer".play_sfx($"/root/AudioPlayer".speed_up_sfx)
+	
 	if combo > 6:
 		curr_vel = VelocityState.LV_1
 	else:
@@ -185,6 +188,7 @@ func stop_movement():
 
 func play_bump_anim(dir):
 	var anim = "bump_" + Direction.dir2string(dir)
+	$"/root/AudioPlayer".play_sfx($"/root/AudioPlayer".wall_bump_sfx)
 	$AnimationPlayer.play(anim, -1, 3.0)
 	$AnimationPlayer.advance(0)
 
@@ -229,6 +233,7 @@ func segment_cast(begin_pos, end_pos):
 	return hits
 
 func enter_portal(portal):
+	$"/root/AudioPlayer".play_sfx($"/root/AudioPlayer".portal_enter_sfx)
 	stop_movement()
 	$AnimationPlayer.play("enter_portal")
 	yield($AnimationPlayer, "animation_finished")
@@ -246,6 +251,7 @@ func exit_portal(portal):
 	is_frozen = false
 
 func fall_inside_hole():
+	$"/root/AudioPlayer".play_sfx($"/root/AudioPlayer".fall_hole_sfx)
 	stop_movement()
 	is_frozen = true
 	$AnimationPlayer.play("fall_in_hole")

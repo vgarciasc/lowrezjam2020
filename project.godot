@@ -39,12 +39,17 @@ _global_script_class_icons={
 [application]
 
 config/name="lowrezjam2020"
-run/main_scene="res://scenes/MainMenu.tscn"
+run/main_scene="res://scenes/TitleScreen.tscn"
 config/icon="res://assets/Sprites/Player Character/player_icon.png"
+
+[audio]
+
+mix_rate=48000
 
 [autoload]
 
 Global="*res://assets/global.gd"
+AudioPlayer="*res://scenes/AudioPlayer.tscn"
 
 [display]
 

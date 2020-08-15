@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Key_Get03.wav-188d17b0790cc5ac2122fc1ea89e17c0.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/SFX/Key_Get03.wav"
+dest_files=[ "res://.import/Key_Get03.wav-188d17b0790cc5ac2122fc1ea89e17c0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

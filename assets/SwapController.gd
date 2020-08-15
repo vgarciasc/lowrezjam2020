@@ -45,7 +45,7 @@ func _input(event):
 				if room != selected_room:
 					hovered_room = room
 			
-		if event.pressed:
+		if event.pressed and event.button_index == BUTTON_LEFT:
 			if hovered_room.can_swap():
 				# Start dragging
 				selected_room = hovered_room

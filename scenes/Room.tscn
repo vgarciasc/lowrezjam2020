@@ -598,6 +598,7 @@ tile_data = PoolIntArray( 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 65536, 2, 0, 65537
 script = ExtResource( 13 )
 normal_color = Color( 0.0666667, 0.113725, 0.368627, 1 )
 swapping_color = Color( 0.209167, 0.267276, 0.582031, 1 )
+hovering_color = Color( 0, 0, 0, 1 )
 
 [node name="Walls" type="TileMap" parent="." groups=[
 "SolidWall",
@@ -626,7 +627,7 @@ modulate = Color( 1, 1, 1, 0 )
 tile_set = ExtResource( 15 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( -196601, 1, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 9, 1, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 131072, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0 )
+tile_data = PoolIntArray( 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 9, 1, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 131072, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0 )
 script = ExtResource( 16 )
 __meta__ = {
 "_edit_lock_": true

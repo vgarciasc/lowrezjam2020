@@ -3,6 +3,7 @@ extends Area2D
 func be_acquired():
 	var particles = $Particles2D
 	
+	$"/root/AudioPlayer".play_key_get()
 	remove_child(particles)
 	get_parent().add_child(particles)
 	particles.set_owner(get_parent())

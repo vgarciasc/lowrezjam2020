@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Rock_Smash.wav-d11f8c4cd7c871f7a4981fc3aba34a91.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/SFX/Rock_Smash.wav"
+dest_files=[ "res://.import/Rock_Smash.wav-d11f8c4cd7c871f7a4981fc3aba34a91.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
