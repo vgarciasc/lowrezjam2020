@@ -104,4 +104,5 @@ go_to_lvl_select={
 [rendering]
 
 quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 0.0666667, 0.113725, 0.368627, 1 )
 environment/default_environment="res://default_env.tres"

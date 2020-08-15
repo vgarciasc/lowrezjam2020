@@ -1,33 +1,95 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/TitleScreen.gd" type="Script" id=1]
+[ext_resource path="res://assets/dynamic_font1.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/Sprites/Title Screen/Title.png" type="Texture" id=3]
+[ext_resource path="res://assets/Sprites/UI/Shaded.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Shader overlay.gd" type="Script" id=5]
 
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+void vertex() {
+	//VERTEX.y = VERTEX.y + cos(TIME)/0.015625;
+	VERTEX.y += sin((UV.x+TIME)*5.0)*1.0;
+}"
+custom_defines = ""
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float size_x = 0.001;
+uniform float size_y = 0.001;
+uniform float quantity = 1;
+uniform float center_factor = 200000.0;
+
+void fragment() {
+	vec2 uv = SCREEN_UV;
+	uv -= mod(uv, vec2(size_x * quantity, size_y * quantity));
+	uv += (quantity*quantity)/center_factor - quantity/center_factor;
+	
+	COLOR.rgb = textureLod(SCREEN_TEXTURE, uv, 0.0).rgb;
+}"
+custom_defines = ""
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/size_x = 0.001
+shader_param/size_y = 0.001
+shader_param/quantity = 1.0
+shader_param/center_factor = 200000.0
 
 [node name="TitleScreen" type="Node2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Title" type="TextureRect" parent="CanvasLayer"]
+material = SubResource( 4 )
 anchor_right = 1.0
-margin_bottom = 30.0
-text = "lrj2020"
-align = 1
-valign = 1
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="CanvasLayer"]
-anchor_top = 0.5
+[node name="Shader overlay" type="TextureRect" parent="CanvasLayer"]
+material = SubResource( 2 )
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = 0.280617
-margin_top = -1.86215
-margin_right = 0.280617
-margin_bottom = 18.1379
-text = "start"
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="enter_game"]
+
+[node name="Timer" type="Timer" parent="CanvasLayer/Shader overlay"]
+wait_time = 0.01
+
+[node name="Blink Timer" type="Timer" parent="CanvasLayer/Shader overlay"]
+wait_time = 0.5
+autostart = true
+
+[node name="Load Game Timer" type="Timer" parent="CanvasLayer/Shader overlay"]
+wait_time = 4.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Shader overlay"]
+margin_top = 40.0
+margin_right = 64.0
+margin_bottom = 56.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.847059, 0.454902, 0.831373, 1 )
+text = "Press Anything"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="CanvasLayer/Shader overlay/Timer" to="CanvasLayer/Shader overlay" method="_on_Timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/Shader overlay/Blink Timer" to="CanvasLayer/Shader overlay" method="_on_Blink_Timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/Shader overlay/Load Game Timer" to="CanvasLayer/Shader overlay" method="_on_Load_Game_Timer_timeout"]
