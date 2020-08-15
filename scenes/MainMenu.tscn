@@ -12,9 +12,9 @@
 [ext_resource path="res://assets/outer_border_tileset.tres" type="TileSet" id=10]
 [ext_resource path="res://assets/MainMenu.gd" type="Script" id=11]
 [ext_resource path="res://scenes/LevelData.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/Level_2.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Level_8.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/Level_G_Tut.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/Level_4.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/Level_7.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/Level_3.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/Level_5.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/QuitArea.tscn" type="PackedScene" id=18]
@@ -58,6 +58,9 @@ script = ExtResource( 1 )
 
 [node name="Room" parent="Rooms" instance=ExtResource( 3 )]
 
+[node name="Floor" parent="Rooms/Room" index="0"]
+hovering_color = Color( 0, 0, 0, 1 )
+
 [node name="Walls" parent="Rooms/Room" index="1"]
 tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 65537, 65537, 7, 196613, 65538, 0, 0, 65539, 7, 131072, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 7, 196608, 196608, 7, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0 )
 
@@ -100,6 +103,9 @@ __meta__ = {
 [node name="Room2" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( -64, 0 )
 
+[node name="Floor" parent="Rooms/Room2" index="0"]
+hovering_color = Color( 0, 0, 0, 1 )
+
 [node name="Walls" parent="Rooms/Room2" index="1"]
 tile_data = PoolIntArray( 0, 7, 3, 1, 7, 4, 2, 7, 4, 3, 7, 5, 65536, 7, 131075, 65537, 7, 131076, 65538, 7, 131076, 65539, 7, 131077, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 196608, 7, 196611, 196609, 7, 196612, 196610, 7, 196612, 196611, 7, 196613 )
 
@@ -108,18 +114,24 @@ tile_data = PoolIntArray( 0, 7, 3, 1, 7, 4, 2, 7, 4, 3, 7, 5, 65536, 7, 131075, 
 [node name="Room3" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 64, 0 )
 
+[node name="Floor" parent="Rooms/Room3" index="0"]
+hovering_color = Color( 0, 0, 0, 1 )
+
 [node name="Walls" parent="Rooms/Room3" index="1"]
 tile_data = PoolIntArray( 0, 0, 0, 1, 7, 196611, 2, 7, 196612, 3, 7, 2, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 7, 131072, 131072, 7, 196611, 131073, 7, 196613, 131074, 0, 0, 131075, 7, 131072, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 7, 196608 )
 
 [node name="Room4" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 0, -64 )
 
+[node name="Floor" parent="Rooms/Room4" index="0"]
+hovering_color = Color( 0, 0, 0, 1 )
+
 [node name="Walls" parent="Rooms/Room4" index="1"]
 tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 65537, 65537, 7, 196613, 65538, 0, 0, 65539, 7, 131072, 131075, 7, 131072, 196608, 7, 0, 196609, 0, 0, 196610, 7, 196611, 196611, 7, 65538 )
 
 [node name="Portal" parent="Rooms/Room4" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
-level_scene = ExtResource( 14 )
+level_scene = ExtResource( 8 )
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room4" instance=ExtResource( 7 )]
@@ -128,12 +140,15 @@ position = Vector2( 40, 24 )
 [node name="Room5" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 0, -128 )
 
+[node name="Floor" parent="Rooms/Room5" index="0"]
+hovering_color = Color( 0, 0, 0, 1 )
+
 [node name="Walls" parent="Rooms/Room5" index="1"]
 tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 65537, 65537, 7, 196613, 65538, 0, 0, 65539, 7, 131072, 131075, 7, 131072, 196608, 7, 0, 196609, 0, 0, 196610, 7, 196611, 196611, 7, 65538 )
 
 [node name="Portal" parent="Rooms/Room5" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
-level_scene = ExtResource( 8 )
+level_scene = ExtResource( 14 )
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room5" instance=ExtResource( 7 )]
@@ -142,12 +157,15 @@ position = Vector2( 40, 24 )
 [node name="Room6" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 0, -192 )
 
+[node name="Floor" parent="Rooms/Room6" index="0"]
+hovering_color = Color( 0, 0, 0, 1 )
+
 [node name="Walls" parent="Rooms/Room6" index="1"]
 tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 65537, 65537, 7, 196613, 65538, 0, 0, 65539, 7, 131072, 131075, 7, 131072, 196608, 7, 0, 196609, 0, 0, 196610, 7, 196611, 196611, 7, 65538 )
 
 [node name="Portal" parent="Rooms/Room6" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
-level_scene = ExtResource( 13 )
+level_scene = ExtResource( 17 )
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room6" instance=ExtResource( 7 )]
@@ -156,12 +174,15 @@ position = Vector2( 40, 24 )
 [node name="Room7" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 0, -256 )
 
+[node name="Floor" parent="Rooms/Room7" index="0"]
+hovering_color = Color( 0, 0, 0, 1 )
+
 [node name="Walls" parent="Rooms/Room7" index="1"]
 tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 65537, 65537, 7, 196613, 65538, 0, 0, 65539, 7, 131072, 131075, 7, 131072, 196608, 7, 0, 196609, 0, 0, 196610, 7, 196611, 196611, 7, 65538 )
 
 [node name="Portal" parent="Rooms/Room7" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
-level_scene = ExtResource( 16 )
+level_scene = ExtResource( 15 )
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room7" instance=ExtResource( 7 )]
@@ -170,12 +191,15 @@ position = Vector2( 40, 24 )
 [node name="Room8" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 0, -320 )
 
+[node name="Floor" parent="Rooms/Room8" index="0"]
+hovering_color = Color( 0, 0, 0, 1 )
+
 [node name="Walls" parent="Rooms/Room8" index="1"]
 tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 65537, 65537, 7, 196613, 65538, 0, 0, 65539, 7, 131072, 131075, 7, 131072, 196608, 7, 0, 196609, 0, 0, 196610, 7, 196611, 196611, 7, 65538 )
 
 [node name="Portal" parent="Rooms/Room8" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
-level_scene = ExtResource( 15 )
+level_scene = ExtResource( 16 )
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room8" instance=ExtResource( 7 )]
@@ -184,12 +208,15 @@ position = Vector2( 40, 24 )
 [node name="Room9" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 0, -384 )
 
+[node name="Floor" parent="Rooms/Room9" index="0"]
+hovering_color = Color( 0, 0, 0, 1 )
+
 [node name="Walls" parent="Rooms/Room9" index="1"]
 tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 65537, 65537, 7, 196613, 65538, 0, 0, 65539, 7, 131072, 131075, 7, 131072, 196608, 7, 0, 196609, 0, 0, 196610, 7, 196611, 196611, 7, 65538 )
 
 [node name="Portal" parent="Rooms/Room9" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
-level_scene = ExtResource( 17 )
+level_scene = ExtResource( 13 )
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room9" instance=ExtResource( 7 )]
@@ -198,17 +225,26 @@ position = Vector2( 40, 24 )
 [node name="Room10" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 0, -448 )
 
+[node name="Floor" parent="Rooms/Room10" index="0"]
+hovering_color = Color( 0, 0, 0, 1 )
+
 [node name="Walls" parent="Rooms/Room10" index="1"]
 tile_data = PoolIntArray( 0, 7, 3, 1, 7, 5, 3, 7, 65536, 65536, 7, 65539, 65537, 7, 65541, 65538, 0, 0, 65539, 7, 131072, 131072, 7, 65539, 131073, 7, 65541, 131075, 7, 131072, 196608, 7, 131075, 196609, 7, 131077, 196611, 7, 196608 )
 
 [node name="Room11" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 0, -512 )
 
+[node name="Floor" parent="Rooms/Room11" index="0"]
+hovering_color = Color( 0, 0, 0, 1 )
+
 [node name="Walls" parent="Rooms/Room11" index="1"]
 tile_data = PoolIntArray( 0, 7, 3, 1, 7, 5, 3, 7, 65536, 65536, 7, 65539, 65537, 7, 65541, 65538, 0, 0, 65539, 7, 131072, 131072, 7, 65539, 131073, 7, 65541, 131075, 7, 131072, 196608, 7, 131075, 196609, 7, 131077, 196611, 7, 196608 )
 
 [node name="Room12" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 0, -576 )
+
+[node name="Floor" parent="Rooms/Room12" index="0"]
+hovering_color = Color( 0, 0, 0, 1 )
 
 [node name="Walls" parent="Rooms/Room12" index="1"]
 tile_data = PoolIntArray( 0, 7, 3, 1, 7, 5, 3, 7, 65536, 65536, 7, 65539, 65537, 7, 65541, 65538, 0, 0, 65539, 7, 131072, 131072, 7, 65539, 131073, 7, 65541, 131075, 7, 131072, 196608, 7, 131075, 196609, 7, 131077, 196611, 7, 196608 )
