@@ -4,7 +4,7 @@ signal death
 signal starting_at_pos(pos)
 signal entered_portal(portal)
 
-enum VelocityState { LV_0 = 0, LV_1 = 1, LV_2 = 2, LV_3 = 3, LV_4 = 4 }
+enum VelocityState { LV_0 = 0, LV_1 = 1 }
 
 export (Array, Color) var velocityModulations;
 export (Array, int) var velocitySpeeds;
@@ -106,7 +106,7 @@ func can_move_from_to(from_pos, to_pos):
 	for collision in hits:
 		var obj = collision.collider
 		if obj.is_in_group("Rock"):
-			if curr_vel < obj.resistance:
+			if curr_vel < 1:
 				return false
 		if obj.is_in_group("LockedDoor"):
 			if !obj.can_open():
@@ -127,18 +127,14 @@ func handle_collision_arrive():
 			if obj.is_in_group("Key"):
 				level.acquire_key(obj)
 			elif obj.is_in_group("Rock"):
-				if curr_vel >= obj.resistance:
-					if curr_vel == obj.resistance:
-						stop_movement()
+				if curr_vel == 1:
+					stop_movement()
 					obj.destroy()
 			elif obj.is_in_group("Hole"):
-				if curr_vel < obj.resistance:
+				if curr_vel < 1:
 					fall_inside_hole()
 			elif obj.is_in_group("Spring"):
 				next_dir = obj.direction
-#			elif obj.is_in_group("LockedDoor"):
-#				if obj.can_open():
-#					obj.open()
 			elif obj.is_in_group("Portal"):
 				enter_portal(obj)
 			elif obj.is_in_group("QuitArea"):
@@ -167,13 +163,7 @@ func die():
 func update_velocity():
 	var combo = curr_tile_combo - curr_tile_combo_penalty
 	
-	if combo > 24:
-		curr_vel = VelocityState.LV_4
-	elif combo > 18:
-		curr_vel = VelocityState.LV_3
-	elif combo > 12:
-		curr_vel = VelocityState.LV_2
-	elif combo > 6:
+	if combo > 6:
 		curr_vel = VelocityState.LV_1
 	else:
 		curr_vel = VelocityState.LV_0
@@ -186,9 +176,12 @@ func get_curr_speed():
 func stop_movement():
 	curr_tile_combo = 0
 	curr_tile_combo_penalty = 0
-	next_dir = Direction.Dir.NONE
+	
 	if $AnimationPlayer.current_animation.begins_with("move"):
 		$AnimationPlayer.stop(true)
+		play_idle_anim(next_dir)
+	
+	next_dir = Direction.Dir.NONE
 
 func play_bump_anim(dir):
 	var anim = "bump_" + Direction.dir2string(dir)
