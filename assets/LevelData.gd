@@ -1,7 +1,8 @@
 extends Node2D
 
 export (int) var CELL_SIZE = 16
-export (int) var lvl_id = -1
+#export (int) var lvl_id = -1
+export (PackedScene) var lvl_scene
 
 export (bool) var can_reset = true
 

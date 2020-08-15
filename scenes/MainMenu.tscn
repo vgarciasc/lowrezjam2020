@@ -12,12 +12,13 @@
 [ext_resource path="res://assets/outer_border_tileset.tres" type="TileSet" id=10]
 [ext_resource path="res://assets/MainMenu.gd" type="Script" id=11]
 [ext_resource path="res://scenes/LevelData.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/Level_6.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/Level_3.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/Level_2.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Level_G_Tut.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/Level_4.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/Level_7.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/Level_3.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/Level_5.tscn" type="PackedScene" id=17]
-[ext_resource path="res://assets/Sprites/floor_2.png" type="Texture" id=18]
+[ext_resource path="res://scenes/QuitArea.tscn" type="PackedScene" id=18]
+[ext_resource path="res://assets/Sprites/lvlportal_1.png" type="Texture" id=19]
 
 [sub_resource type="DynamicFontData" id=1]
 antialiased = false
@@ -37,9 +38,6 @@ font_data = SubResource( 1 )
 size = 7
 extra_spacing_top = 2
 font_data = SubResource( 1 )
-
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 8, 8 )
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 11 )
@@ -105,126 +103,7 @@ position = Vector2( -64, 0 )
 [node name="Walls" parent="Rooms/Room2" index="1"]
 tile_data = PoolIntArray( 0, 7, 3, 1, 7, 4, 2, 7, 4, 3, 7, 5, 65536, 7, 131075, 65537, 7, 131076, 65538, 7, 131076, 65539, 7, 131077, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 196608, 7, 196611, 196609, 7, 196612, 196610, 7, 196612, 196611, 7, 196613 )
 
-[node name="QuitArea" type="Area2D" parent="Rooms/Room2"]
-position = Vector2( 8, 40 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Room2/QuitArea" groups=[
-"GridElement",
-"QuitArea",
-]]
-position = Vector2( -16, 0 )
-shape = SubResource( 5 )
-
-[node name="FinalBlock" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 1 )
-position = Vector2( -16, 0 )
-z_index = 2
-texture = ExtResource( 18 )
-
-[node name="Sprite" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 1 )
-position = Vector2( -6, -8 )
-scale = Vector2( 0.25, 4 )
-z_index = 2
-texture = ExtResource( 18 )
-
-[node name="Sprite2" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 0.937255 )
-position = Vector2( -2, -8 )
-scale = Vector2( 0.25, 4 )
-z_index = 2
-texture = ExtResource( 18 )
-
-[node name="Sprite3" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 0.87451 )
-position = Vector2( 2, -8 )
-scale = Vector2( 0.25, 4 )
-z_index = 2
-texture = ExtResource( 18 )
-
-[node name="Sprite4" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 0.811765 )
-position = Vector2( 6, -8 )
-scale = Vector2( 0.25, 4 )
-z_index = 2
-texture = ExtResource( 18 )
-
-[node name="Sprite5" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 0.74902 )
-position = Vector2( 10, -8 )
-scale = Vector2( 0.25, 4 )
-z_index = 2
-texture = ExtResource( 18 )
-
-[node name="Sprite6" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 0.686275 )
-position = Vector2( 14, -8 )
-scale = Vector2( 0.25, 4 )
-z_index = 2
-texture = ExtResource( 18 )
-
-[node name="Sprite7" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 0.623529 )
-position = Vector2( 18, -8 )
-scale = Vector2( 0.25, 4 )
-z_index = 2
-texture = ExtResource( 18 )
-
-[node name="Sprite8" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 0.560784 )
-position = Vector2( 22, -8 )
-scale = Vector2( 0.25, 4 )
-z_index = 2
-texture = ExtResource( 18 )
-
-[node name="Sprite9" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 0.498039 )
-position = Vector2( 26, -8 )
-scale = Vector2( 0.25, 4 )
-z_index = 2
-texture = ExtResource( 18 )
-
-[node name="Sprite10" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 0.435294 )
-position = Vector2( 30, -8 )
-scale = Vector2( 0.25, 4 )
-z_index = 2
-texture = ExtResource( 18 )
-
-[node name="Sprite11" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 0.372549 )
-position = Vector2( 34, -8 )
-scale = Vector2( 0.25, 4 )
-z_index = 2
-texture = ExtResource( 18 )
-
-[node name="Sprite12" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 0.309804 )
-position = Vector2( 38, -8 )
-scale = Vector2( 0.25, 4 )
-z_index = 2
-texture = ExtResource( 18 )
-
-[node name="Sprite13" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 0.247059 )
-position = Vector2( 42, -8 )
-scale = Vector2( 0.25, 4 )
-z_index = 2
-texture = ExtResource( 18 )
-
-[node name="Sprite14" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 0.184314 )
-position = Vector2( 46, -8 )
-scale = Vector2( 0.25, 4 )
-z_index = 2
-texture = ExtResource( 18 )
-
-[node name="Sprite15" type="Sprite" parent="Rooms/Room2/QuitArea"]
-modulate = Color( 0, 0, 0, 0.121569 )
-position = Vector2( 50, -8 )
-scale = Vector2( 0.25, 4 )
-z_index = 2
-texture = ExtResource( 18 )
+[node name="QuitArea" parent="Rooms/Room2" instance=ExtResource( 18 )]
 
 [node name="Room3" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 64, 0 )
@@ -240,13 +119,11 @@ tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 
 
 [node name="Portal" parent="Rooms/Room4" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
-level_scene = ExtResource( 8 )
-level_id = 1
+level_scene = ExtResource( 14 )
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room4" instance=ExtResource( 7 )]
 position = Vector2( 40, 24 )
-lvl_id = 1
 
 [node name="Room5" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 0, -128 )
@@ -256,13 +133,11 @@ tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 
 
 [node name="Portal" parent="Rooms/Room5" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
-level_scene = ExtResource( 14 )
-level_id = 2
+level_scene = ExtResource( 8 )
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room5" instance=ExtResource( 7 )]
 position = Vector2( 40, 24 )
-lvl_id = 3
 
 [node name="Room6" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 0, -192 )
@@ -272,13 +147,11 @@ tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 
 
 [node name="Portal" parent="Rooms/Room6" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
-level_scene = ExtResource( 15 )
-level_id = 3
+level_scene = ExtResource( 13 )
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room6" instance=ExtResource( 7 )]
 position = Vector2( 40, 24 )
-lvl_id = 4
 
 [node name="Room7" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 0, -256 )
@@ -288,13 +161,11 @@ tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 
 
 [node name="Portal" parent="Rooms/Room7" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
-level_scene = ExtResource( 17 )
-level_id = 4
+level_scene = ExtResource( 16 )
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room7" instance=ExtResource( 7 )]
 position = Vector2( 40, 24 )
-lvl_id = 5
 
 [node name="Room8" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 0, -320 )
@@ -304,13 +175,11 @@ tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 
 
 [node name="Portal" parent="Rooms/Room8" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
-level_scene = ExtResource( 16 )
-level_id = 5
+level_scene = ExtResource( 15 )
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room8" instance=ExtResource( 7 )]
 position = Vector2( 40, 24 )
-lvl_id = 7
 
 [node name="Room9" parent="Rooms" instance=ExtResource( 3 )]
 position = Vector2( 0, -384 )
@@ -320,13 +189,47 @@ tile_data = PoolIntArray( 0, 7, 65536, 1, 0, 0, 2, 0, 0, 3, 7, 65536, 65536, 7, 
 
 [node name="Portal" parent="Rooms/Room9" instance=ExtResource( 5 )]
 position = Vector2( 8, 40 )
-level_scene = ExtResource( 13 )
-level_id = 6
+level_scene = ExtResource( 17 )
 player_comes_from = 3
 
 [node name="LockedDoor" parent="Rooms/Room9" instance=ExtResource( 7 )]
 position = Vector2( 40, 24 )
-lvl_id = 6
+
+[node name="Room10" parent="Rooms" instance=ExtResource( 3 )]
+position = Vector2( 0, -448 )
+
+[node name="Walls" parent="Rooms/Room10" index="1"]
+tile_data = PoolIntArray( 0, 7, 3, 1, 7, 5, 3, 7, 65536, 65536, 7, 65539, 65537, 7, 65541, 65538, 0, 0, 65539, 7, 131072, 131072, 7, 65539, 131073, 7, 65541, 131075, 7, 131072, 196608, 7, 131075, 196609, 7, 131077, 196611, 7, 196608 )
+
+[node name="Room11" parent="Rooms" instance=ExtResource( 3 )]
+position = Vector2( 0, -512 )
+
+[node name="Walls" parent="Rooms/Room11" index="1"]
+tile_data = PoolIntArray( 0, 7, 3, 1, 7, 5, 3, 7, 65536, 65536, 7, 65539, 65537, 7, 65541, 65538, 0, 0, 65539, 7, 131072, 131072, 7, 65539, 131073, 7, 65541, 131075, 7, 131072, 196608, 7, 131075, 196609, 7, 131077, 196611, 7, 196608 )
+
+[node name="Room12" parent="Rooms" instance=ExtResource( 3 )]
+position = Vector2( 0, -576 )
+
+[node name="Walls" parent="Rooms/Room12" index="1"]
+tile_data = PoolIntArray( 0, 7, 3, 1, 7, 5, 3, 7, 65536, 65536, 7, 65539, 65537, 7, 65541, 65538, 0, 0, 65539, 7, 131072, 131072, 7, 65539, 131073, 7, 65541, 131075, 7, 131072, 196608, 7, 131075, 196609, 7, 131077, 196611, 7, 196608 )
+
+[node name="QuitArea" parent="Rooms" instance=ExtResource( 18 )]
+position = Vector2( 24, -568 )
+rotation = 1.5708
+
+[node name="CollisionShape2D" parent="Rooms/QuitArea" index="0"]
+visible = false
+
+[node name="FinalBlock" parent="Rooms/QuitArea" index="1"]
+visible = false
+
+[node name="FinalRoom" type="Node2D" parent="Rooms"]
+position = Vector2( 0, -776 )
+
+[node name="Sprite" type="Sprite" parent="Rooms/FinalRoom"]
+position = Vector2( 40, 31.9999 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 19 )
 
 [node name="OuterBorders" type="TileMap" parent="Rooms" groups=[
 "Borders",
@@ -335,7 +238,7 @@ modulate = Color( 0, 0, 0, 1 )
 tile_set = ExtResource( 10 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( -1572865, 0, 0, -1638400, 0, 0, -1638399, 0, 0, -1638398, 0, 0, -1638397, 0, 0, -1638396, 0, 0, -1507329, 0, 0, -1572860, 0, 0, -1441793, 0, 0, -1507324, 0, 0, -1376257, 0, 0, -1441788, 0, 0, -1310721, 0, 0, -1376252, 0, 0, -1245185, 0, 0, -1310716, 0, 0, -1179649, 0, 0, -1245180, 0, 0, -1114113, 0, 0, -1179644, 0, 0, -1048577, 0, 0, -1114108, 0, 0, -983041, 0, 0, -1048572, 0, 0, -917505, 0, 0, -983036, 0, 0, -851969, 0, 0, -917500, 0, 0, -786433, 0, 0, -851964, 0, 0, -720897, 0, 0, -786428, 0, 0, -655361, 0, 0, -720892, 0, 0, -589825, 0, 0, -655356, 0, 0, -524289, 0, 0, -589820, 0, 0, -458753, 0, 0, -524284, 0, 0, -393217, 0, 0, -458748, 0, 0, -327681, 0, 0, -393212, 0, 0, -262145, 0, 0, -327676, 0, 0, -196609, 0, 0, -262140, 0, 0, -131073, 0, 0, -196604, 0, 0, -65537, 0, 0, -131068, 0, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, 65531, 0, 0, 8, 0, 0, 131067, 0, 0, 65544, 0, 0, 131080, 0, 0, 262139, 0, 0, 196616, 0, 0, 327675, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0 )
+tile_data = PoolIntArray( -3211265, 0, 0, -3276800, 0, 0, -3276799, 0, 0, -3276798, 0, 0, -3276797, 0, 0, -3276796, 0, 0, -3145729, 0, 0, -3080193, 0, 0, -3014657, 0, 0, -2949121, 0, 0, -2883585, 0, 0, -2818049, 0, 0, -2883584, 0, 0, -2883583, 0, 0, -2883581, 0, 0, -2883580, 0, 0, -2752513, 0, 0, -2818048, 0, 0, -2818047, 0, 0, -2818045, 0, 0, -2818044, 0, 0, -2686977, 0, 0, -2752512, 0, 0, -2752511, 0, 0, -2752509, 0, 0, -2752508, 0, 0, -2621441, 0, 0, -2686976, 0, 0, -2686975, 0, 0, -2686973, 0, 0, -2686972, 0, 0, -2555905, 0, 0, -2621440, 0, 0, -2621439, 0, 0, -2621437, 0, 0, -2621436, 0, 0, -2490369, 0, 0, -2555904, 0, 0, -2555903, 0, 0, -2555901, 0, 0, -2555900, 0, 0, -2424833, 0, 0, -2490368, 0, 0, -2490367, 0, 0, -2490365, 0, 0, -2490364, 0, 0, -2359297, 0, 0, -2424832, 0, 0, -2424831, 0, 0, -2424829, 0, 0, -2424828, 0, 0, -2293761, 0, 0, -2359292, 0, 0, -2228225, 0, 0, -2293756, 0, 0, -2162689, 0, 0, -2228220, 0, 0, -2097153, 0, 0, -2162684, 0, 0, -2031617, 0, 0, -2097148, 0, 0, -1966081, 0, 0, -2031612, 0, 0, -1900545, 0, 0, -1966076, 0, 0, -1835009, 0, 0, -1900540, 0, 0, -1769473, 0, 0, -1835004, 0, 0, -1703937, 0, 0, -1769468, 0, 0, -1638401, 0, 0, -1703932, 0, 0, -1572865, 0, 0, -1638396, 0, 0, -1507329, 0, 0, -1572860, 0, 0, -1441793, 0, 0, -1507324, 0, 0, -1376257, 0, 0, -1441788, 0, 0, -1310721, 0, 0, -1376252, 0, 0, -1245185, 0, 0, -1310716, 0, 0, -1179649, 0, 0, -1245180, 0, 0, -1114113, 0, 0, -1179644, 0, 0, -1048577, 0, 0, -1114108, 0, 0, -983041, 0, 0, -1048572, 0, 0, -917505, 0, 0, -983036, 0, 0, -851969, 0, 0, -917500, 0, 0, -786433, 0, 0, -851964, 0, 0, -720897, 0, 0, -786428, 0, 0, -655361, 0, 0, -720892, 0, 0, -589825, 0, 0, -655356, 0, 0, -524289, 0, 0, -589820, 0, 0, -458753, 0, 0, -524284, 0, 0, -393217, 0, 0, -458748, 0, 0, -327681, 0, 0, -393212, 0, 0, -262145, 0, 0, -327676, 0, 0, -196609, 0, 0, -262140, 0, 0, -131073, 0, 0, -196604, 0, 0, -65537, 0, 0, -131068, 0, 0, -5, 0, 0, -4, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, 65531, 0, 0, 8, 0, 0, 131067, 0, 0, 65544, 0, 0, 131080, 0, 0, 262139, 0, 0, 196616, 0, 0, 327675, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0 )
 
 [node name="InnerBorders" parent="Rooms" instance=ExtResource( 6 )]
 
@@ -363,3 +266,11 @@ position = Vector2( 40, 24 )
 [editable path="Rooms/Room8"]
 
 [editable path="Rooms/Room9"]
+
+[editable path="Rooms/Room10"]
+
+[editable path="Rooms/Room11"]
+
+[editable path="Rooms/Room12"]
+
+[editable path="Rooms/QuitArea"]

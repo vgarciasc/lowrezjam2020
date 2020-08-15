@@ -1,17 +1,19 @@
 extends Area2D
 
-export (int) var lvl_id
+var associated_portal
 
 func _ready():
-	if $"/root/Global".opened_doors.has(lvl_id):
+	associated_portal = $"../Portal"
+	
+	if $"/root/Global".opened_doors.has(get_path()):
 		destroy()
 
 func open():
 	$AnimationPlayer.play("open")
-	$"/root/Global".opened_doors.append(lvl_id)
+	$"/root/Global".opened_doors.append(get_path())
 
 func can_open():
-	return $"/root/Global".completed_levels.has(lvl_id)
+	return $"/root/Global".completed_levels.has(associated_portal.get_level_name())
 
 func destroy():
 	queue_free()

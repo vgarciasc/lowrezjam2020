@@ -26,7 +26,7 @@ func _on_RestartButton_pressed():
 
 func completed_lvl_to_main_menu():
 	$"/root/Global".coming_from_level_complete = true
-	$"/root/Global".completed_levels.append($"../LevelData".lvl_id)
+	$"/root/Global".completed_levels.append($"/root/Global".last_lvl_entered)
 	get_tree().change_scene("res://scenes/MainMenu.tscn")
 
 func _on_ProceedButton_pressed():
