@@ -38,9 +38,10 @@ _global_script_class_icons={
 
 [application]
 
-config/name="lowrezjam2020"
+config/name="swappery"
 run/main_scene="res://scenes/TitleScreen.tscn"
-config/icon="res://assets/Sprites/Player Character/player_icon.png"
+config/icon="res://assets/Sprites/Icon/Default Icon.png"
+config/windows_native_icon="res://assets/Sprites/Icon/default_icon_tS5_icon.ico"
 
 [audio]
 
