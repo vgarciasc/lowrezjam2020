@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://assets/Level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://scenes/QuitArea.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/Sprites/Items/Portal.png" type="Texture" id=19]
 [ext_resource path="res://scenes/Level_9.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/EndingRoom.gd" type="Script" id=21]
 
 [sub_resource type="DynamicFontData" id=1]
 antialiased = false
@@ -254,6 +255,7 @@ visible = false
 
 [node name="FinalRoom" type="Node2D" parent="Rooms"]
 position = Vector2( 0, -776 )
+script = ExtResource( 21 )
 
 [node name="Sprite" type="Sprite" parent="Rooms/FinalRoom"]
 modulate = Color( 1, 0.0862745, 0.662745, 1 )
@@ -261,7 +263,7 @@ position = Vector2( 40, 31.9999 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 19 )
 hframes = 14
-frame = 5
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Rooms/FinalRoom"]
 anims/idle = SubResource( 5 )
