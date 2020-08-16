@@ -8,3 +8,6 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("change_mode"):
 		get_tree().reload_current_scene()
+
+func go_to_title_screen():
+	get_tree().change_scene("res://scenes/TitleScreen.tscn")

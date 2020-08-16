@@ -19,7 +19,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 5.9, 6.1 ),
+"times": PoolRealArray( 0, 0.5, 5.9, 6.7 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -195,10 +195,36 @@ tracks/15/loop_wrap = true
 tracks/15/imported = false
 tracks/15/enabled = true
 tracks/15/keys = {
-"times": PoolRealArray( 0, 6.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 6.2, 7.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ false, true ]
+"values": [ false, false, true ]
+}
+tracks/16/type = "method"
+tracks/16/path = NodePath(".")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 12.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "go_to_title_screen"
+} ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Blackscreen/Label:modulate")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 7.6, 8.2, 10, 10.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="DynamicFontData" id=2]
@@ -222,6 +248,7 @@ __meta__ = {
 anims/ending = SubResource( 1 )
 
 [node name="Cam1" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -237,7 +264,7 @@ texture = ExtResource( 1 )
 
 [node name="Box" type="TextureRect" parent="Cam1"]
 margin_left = 2.0
-margin_top = 27.5
+margin_top = 28.0
 margin_right = 43.0
 margin_bottom = 87.5
 texture = ExtResource( 3 )
@@ -246,11 +273,10 @@ __meta__ = {
 }
 
 [node name="Cat" type="TextureRect" parent="Cam1"]
-visible = false
 margin_left = 72.25
-margin_top = -3.21875
-margin_right = 97.5
-margin_bottom = 42.875
+margin_top = 5.25
+margin_right = 118.25
+margin_bottom = 50.25
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -280,7 +306,6 @@ __meta__ = {
 }
 
 [node name="Cam3" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -305,7 +330,6 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Cam3"]
-visible = false
 margin_left = 3.25
 margin_top = 3.5
 margin_right = 43.25
@@ -327,7 +351,7 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="Label" type="Label" parent="Blackscreen"]
-visible = false
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = ExtResource( 8 )
@@ -336,3 +360,6 @@ for
 playing!"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
