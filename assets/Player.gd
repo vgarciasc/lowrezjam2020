@@ -111,6 +111,7 @@ func can_move_from_to(from_pos, to_pos):
 				return false
 		if obj.is_in_group("LockedDoor"):
 			if !obj.can_open():
+				$"/root/AudioPlayer".play_sfx($"/root/AudioPlayer".door_locked_sfx)
 				return false
 			else:
 				obj.open()

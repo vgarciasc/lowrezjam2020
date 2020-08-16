@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/audio_player.gd" type="Script" id=1]
 [ext_resource path="res://assets/Sounds/SFX/Fall_Into_Hole.wav" type="AudioStream" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/Sounds/SFX/Rock_Smash.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/Sounds/SFX/Key_Get02.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/Sounds/SFX/Portal_Enter.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/Sounds/SFX/Zoom_Out.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/Sounds/SFX/Escape.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/Sounds/SFX/Wall_Bump.wav" type="AudioStream" id=11]
 [ext_resource path="res://assets/Sounds/SFX/Zoom_In.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/Sounds/SFX/Key_Get01.wav" type="AudioStream" id=13]
@@ -19,23 +19,27 @@
 [ext_resource path="res://assets/Sounds/Music/Main_Menu.ogg" type="AudioStream" id=17]
 [ext_resource path="res://assets/Sounds/Music/Level_Music.ogg" type="AudioStream" id=18]
 [ext_resource path="res://assets/Sounds/Music/Main_Music_Distant.ogg" type="AudioStream" id=19]
+[ext_resource path="res://assets/Sounds/SFX/Door_Locked.wav" type="AudioStream" id=20]
+[ext_resource path="res://assets/Sounds/SFX/Portal_Exit_Complete.wav" type="AudioStream" id=21]
 
 [node name="AudioPlayer" type="AudioStreamPlayer"]
 script = ExtResource( 1 )
 audio_player_helper = ExtResource( 15 )
 door_unlock_sfx = ExtResource( 4 )
+door_locked_sfx = ExtResource( 20 )
 fall_hole_sfx = ExtResource( 2 )
 key_get_sfx = [ ExtResource( 13 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 14 ), ExtResource( 6 ) ]
 portal_enter_sfx = ExtResource( 9 )
+portal_exit_sfx = ExtResource( 21 )
 rock_smash_sfx = ExtResource( 7 )
 speed_up_sfx = ExtResource( 3 )
 wall_bump_sfx = ExtResource( 11 )
 zoom_in_sfx = ExtResource( 12 )
-zoom_out_sfx = ExtResource( 10 )
 main_music = ExtResource( 17 )
 main_music_distant = ExtResource( 19 )
 lvl_music = ExtResource( 18 )
 lvl_music_distant = ExtResource( 16 )
+escape_music = ExtResource( 10 )
 
 [node name="Tween" type="Tween" parent="."]
 

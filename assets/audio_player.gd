@@ -5,19 +5,21 @@ var entered_portal_seek_time = 0
 export (PackedScene) var audio_player_helper
 
 export (AudioStream) var door_unlock_sfx
+export (AudioStream) var door_locked_sfx
 export (AudioStream) var fall_hole_sfx
 export (Array, AudioStream) var key_get_sfx
 export (AudioStream) var portal_enter_sfx
+export (AudioStream) var portal_exit_sfx
 export (AudioStream) var rock_smash_sfx
 export (AudioStream) var speed_up_sfx
 export (AudioStream) var wall_bump_sfx
 export (AudioStream) var zoom_in_sfx
-export (AudioStream) var zoom_out_sfx
 
 export (AudioStream) var main_music
 export (AudioStream) var main_music_distant
 export (AudioStream) var lvl_music
 export (AudioStream) var lvl_music_distant
+export (AudioStream) var escape_music
 
 var audio_active_idx = 0
 
@@ -62,6 +64,14 @@ func play_lvl_music(distant=false):
 	next_audiop.set_stream(music)
 	next_audiop.play(from_pos)
 	handle_fade(curr_audiop, next_audiop)
+
+func play_ending_music():
+	var curr_audiop = get_active_audio_player()
+	var next_audiop = get_next_audio_player()
+	
+	curr_audiop.stop()
+	next_audiop.set_stream(escape_music)
+	next_audiop.play()
 
 func get_active_audio_player():
 	return [$AudioStreamPlayer1, $AudioStreamPlayer2][audio_active_idx]

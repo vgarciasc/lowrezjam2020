@@ -133,6 +133,7 @@ func _on_MainMenu_coming_from_level_complete():
 	zoom = Vector2.ONE * 0.01
 	global_position = portal.global_position
 	
+	$"/root/AudioPlayer".play_sfx($"/root/AudioPlayer".portal_exit_sfx)
 	var tween = $Tween
 	tween.interpolate_property(self, "zoom",
 		Vector2.ONE * 0.01, Vector2.ONE,

@@ -79,7 +79,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 1.7 ),
+"times": PoolRealArray( 0, 1.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -92,7 +92,7 @@ tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
 "points": PoolRealArray( 2, -0.154186, 0.0345292, 0.205024, -0.635686, 1, -0.142225, 0.291858, 0.115076, 0.49256, 3, -0.0581303, -1.03793, 0.200957, -0.711875, 2, -0.25, 0, 0.226914, 0.161327, 2, -0.154186, 0.0345292, 0.205024, -0.635686, 1, -0.142225, 0.291858, 0.115076, 0.49256, 3, -0.0581303, -1.03793, 0.200957, -0.711875, 2, -0.25, 0, 0.226914, 0.161327 ),
-"times": PoolRealArray( 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4 )
+"times": PoolRealArray( 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 )
 }
 tracks/7/type = "bezier"
 tracks/7/path = NodePath("Cam1/Box:margin_top")
@@ -102,7 +102,7 @@ tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
 "points": PoolRealArray( 27.5, -0.25, 0, 0.25, 0, 28, -0.25, 0, 0.25, 0, 29, -0.25, 0, 0.25, 0, 28, -0.25, 0, 0.25, 0, 27.5, -0.25, 0, 0.25, 0, 28, -0.25, 0, 0.25, 0, 29, -0.25, 0, 0.25, 0, 28, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4 )
+"times": PoolRealArray( 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 )
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("Cam1/Cat:margin_left")
@@ -111,7 +111,7 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 1.7, 2, 2.3 ),
+"times": PoolRealArray( 1.2, 1.5, 1.8 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ 5.5, 30.75, 72.25 ]
@@ -123,7 +123,7 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 1.7, 2.1, 2.5 ),
+"times": PoolRealArray( 1.2, 1.6, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ 8.0, -9.5, 5.25 ]
@@ -135,7 +135,7 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 1.7, 2.1, 2.5 ),
+"times": PoolRealArray( 1.2, 1.6, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ 76.75, 76.75, 118.25 ]
@@ -147,7 +147,7 @@ tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 1.7, 2.1, 2.5 ),
+"times": PoolRealArray( 1.2, 1.6, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ 35.5, 35.5, 50.25 ]
@@ -247,10 +247,10 @@ __meta__ = {
 
 [node name="Cat" type="TextureRect" parent="Cam1"]
 visible = false
-margin_left = 5.5
-margin_top = 8.0
-margin_right = 76.75
-margin_bottom = 35.5
+margin_left = 72.25
+margin_top = -3.21875
+margin_right = 97.5
+margin_bottom = 42.875
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -271,7 +271,7 @@ texture = ExtResource( 5 )
 expand = true
 
 [node name="Cat" type="TextureRect" parent="Cam2"]
-margin_top = 14.0
+margin_top = 11.75
 margin_right = 61.75
 margin_bottom = 74.5
 texture = ExtResource( 4 )
