@@ -85,7 +85,7 @@ margin_right = 64.0
 margin_bottom = 56.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.847059, 0.454902, 0.831373, 1 )
-text = "Press Anything"
+text = "Press G"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false

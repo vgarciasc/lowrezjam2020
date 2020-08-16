@@ -11,7 +11,7 @@ onready var load_game_timer = $"Load Game Timer"
 onready var blink_timer = $"Blink Timer"
 
 func _input(event) :
-	if event is InputEventKey :
+	if event.is_action_pressed("change_mode"):
 		timer.start()
 		blink_timer.stop()
 		load_game_timer.start()
