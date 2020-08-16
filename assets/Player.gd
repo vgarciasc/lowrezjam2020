@@ -139,6 +139,8 @@ func handle_collision_arrive():
 				enter_portal(obj)
 			elif obj.is_in_group("QuitArea"):
 				get_tree().quit()
+			elif obj.is_in_group("EndingTrigger"):
+				get_tree().change_scene("res://scenes/Ending.tscn")
 			elif obj.is_in_group("SandTile"):
 				# On leave
 				yield($MovementTween, "tween_all_completed")
