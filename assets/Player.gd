@@ -133,8 +133,9 @@ func handle_collision_arrive():
 					stop_movement()
 					obj.destroy()
 			elif obj.is_in_group("Hole"):
-				if curr_vel < 1:
-					fall_inside_hole()
+#				if curr_vel < 1:
+#					fall_inside_hole()
+				fall_inside_hole()
 			elif obj.is_in_group("Spring"):
 				next_dir = obj.direction
 			elif obj.is_in_group("Portal"):
