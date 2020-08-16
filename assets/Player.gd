@@ -123,7 +123,7 @@ func handle_collision_arrive():
 	var arrived_at = position
 	
 	for obj in get_tree().get_nodes_in_group("GridElement"):
-		if obj.global_position == arrived_at:
+		if obj != null and obj.global_position == arrived_at:
 			if obj.is_in_group("Key"):
 				level.acquire_key(obj)
 			elif obj.is_in_group("Rock"):
