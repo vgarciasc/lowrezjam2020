@@ -7,9 +7,6 @@
 [node name="Room1" parent="Rooms" index="3"]
 swappable = false
 
-[node name="Floor" parent="Rooms/Room1" index="0"]
-hovering_color = Color( 0, 0, 0, 1 )
-
 [node name="Walls" parent="Rooms/Room1" index="1"]
 tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 65536, 0, 0, 65537, 7, 1, 65538, 7, 196613, 65539, 0, 0, 131072, 0, 0, 131073, 7, 196608, 131075, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0 )
 
@@ -19,23 +16,14 @@ tile_data = PoolIntArray( 0, 7, 0, 131074, 5, 0 )
 [node name="Room2" parent="Rooms" index="4"]
 swappable = false
 
-[node name="Floor" parent="Rooms/Room2" index="0"]
-hovering_color = Color( 0, 0, 0, 1 )
-
 [node name="Walls" parent="Rooms/Room2" index="1"]
 tile_data = PoolIntArray( 0, 7, 0, 3, 0, 0, 65537, 7, 0, 131074, 7, 0, 196611, 7, 0 )
-
-[node name="Floor" parent="Rooms/Room3" index="0"]
-hovering_color = Color( 0, 0, 0, 1 )
 
 [node name="Walls" parent="Rooms/Room3" index="1"]
 tile_data = PoolIntArray( 0, 7, 65536, 2, 7, 196611, 3, 7, 196613, 65536, 7, 196608, 131074, 0, 0, 131075, 0, 0, 196610, 0, 0, 196611, 7, 0 )
 
 [node name="Elements" parent="Rooms/Room3" index="2"]
 tile_data = PoolIntArray( 196610, 5, 0 )
-
-[node name="Floor" parent="Rooms/Room4" index="0"]
-hovering_color = Color( 0, 0, 0, 1 )
 
 [node name="Walls" parent="Rooms/Room4" index="1"]
 tile_data = PoolIntArray( 2, 7, 1, 3, 7, 196613, 65537, 0, 0, 65538, 7, 131072, 65539, 0, 0, 131072, 7, 3, 131073, 7, 4, 131074, 7, 9, 131075, 0, 0, 196608, 7, 131075, 196609, 7, 131076, 196610, 7, 65545, 196611, 7, 196613 )
