@@ -36,6 +36,7 @@ func toggle_zoom(val):
 
 	var tween = $Tween
 	if val: #ZOOM IN
+		$"/root/AudioPlayer".play_lvl_music(false)
 		$"/root/AudioPlayer".play_sfx($"/root/AudioPlayer".zoom_in_sfx)
 		emit_signal("zoom_in_started")
 		tween.interpolate_property(self, "zoom",
@@ -48,6 +49,7 @@ func toggle_zoom(val):
 					floor((player.global_position.y - 8) / 64) * 64),
 			0.5, Tween.EASE_OUT)
 	else: #ZOOM OUT
+		$"/root/AudioPlayer".play_lvl_music(true)
 		$"/root/AudioPlayer".play_sfx($"/root/AudioPlayer".zoom_out_sfx)
 		emit_signal("zoom_out_started")
 		player.toggle_freeze(true)
@@ -70,8 +72,10 @@ func toggle_zoom(val):
 
 func _on_Player_starting_at_pos(pos):
 	if $"/root/Global".coming_from_main_menu:
+		$"/root/AudioPlayer".play_lvl_music(true)
 		run_initial_zoom_in()
 	else:
+		$"/root/AudioPlayer".play_lvl_music(true)
 		player.is_frozen = true
 		var tween = $Tween
 		position = Vector2(64, 64)

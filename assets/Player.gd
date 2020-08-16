@@ -171,10 +171,13 @@ func update_velocity():
 	
 	if combo > velocityBaseCombo:
 		curr_vel = VelocityState.LV_1
+#		modulate = velocityModulations[curr_vel]
 	else:
 		curr_vel = VelocityState.LV_0
+#		if combo % 2 == 0:
+#			modulate = velocityModulations[0] + (velocityModulations[1] - velocityModulations[0]) * combo / velocityBaseCombo
 	
-	modulate = velocityModulations[curr_vel]
+	$Sprite.modulate = velocityModulations[curr_vel]
 
 func get_curr_speed():
 	return velocitySpeeds[curr_vel]

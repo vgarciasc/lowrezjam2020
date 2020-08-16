@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Level_Music_Distant.ogg-8782006145e41b5823735e3ad5b5de1e.oggstr"
+
+[deps]
+
+source_file="res://assets/Sounds/Music/Level_Music_Distant.ogg"
+dest_files=[ "res://.import/Level_Music_Distant.ogg-8782006145e41b5823735e3ad5b5de1e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
