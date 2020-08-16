@@ -16,7 +16,7 @@
 [ext_resource path="res://assets/Sounds/SFX/Key_Get04.wav" type="AudioStream" id=14]
 [ext_resource path="res://scenes/AudioPlayerHelper.tscn" type="PackedScene" id=15]
 
-[node name="AudioPlayer" type="AudioStreamPlayer2D"]
+[node name="AudioPlayer" type="AudioStreamPlayer"]
 script = ExtResource( 1 )
 audio_player_helper = ExtResource( 15 )
 door_unlock_sfx = ExtResource( 4 )
