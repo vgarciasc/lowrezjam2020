@@ -91,7 +91,6 @@ position = Vector2( 40, 24 )
 can_reset = false
 
 [node name="Camera2D" parent="." instance=ExtResource( 4 )]
-position = Vector2( 32, -736 )
 
 [node name="Rooms" type="Node2D" parent="." groups=[
 "Level",
@@ -498,7 +497,7 @@ tile_data = PoolIntArray( -4521985, 0, 0, -4587516, 0, 0, -4456449, 0, 0, -45219
 [node name="InnerBorders" parent="Rooms" instance=ExtResource( 6 )]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 40, -760 )
+position = Vector2( 40, 24 )
 [connection signal="coming_from_level_complete" from="." to="Camera2D" method="_on_MainMenu_coming_from_level_complete"]
 [connection signal="entered_portal" from="Player" to="Camera2D" method="_on_Player_entered_portal"]
 
