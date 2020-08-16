@@ -72,9 +72,14 @@ func _on_Player_starting_at_pos(pos):
 	if $"/root/Global".coming_from_main_menu:
 		run_initial_zoom_in()
 	else:
-		position += Vector2(
-			floor(pos.x / 64) * 64,
-			floor(pos.y / 64) * 64)
+		player.is_frozen = true
+		var tween = $Tween
+		position = Vector2(64, 64)
+		tween.interpolate_property(self, "zoom",
+			Vector2.ONE * 2.2, Vector2.ONE * 2, 1.5, Tween.TRANS_LINEAR)
+		tween.start()
+		yield(tween, "tween_all_completed")
+		toggle_zoom(true)
 
 func run_initial_zoom_in():
 	$"../SwapController".toggle_zoom_lock(true)
