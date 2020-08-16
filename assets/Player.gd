@@ -138,6 +138,9 @@ func handle_collision_arrive():
 #					fall_inside_hole()
 				fall_inside_hole()
 			elif obj.is_in_group("Spring"):
+				curr_tile_combo += velocityBaseCombo + 1
+				update_velocity()
+				$"/root/AudioPlayer".play_sfx($"/root/AudioPlayer".speed_up_sfx)
 				next_dir = obj.direction
 			elif obj.is_in_group("Portal"):
 				enter_portal(obj)
@@ -174,9 +177,6 @@ func update_velocity():
 		return
 	
 	var combo = curr_tile_combo - curr_tile_combo_penalty
-	
-	if combo == velocityBaseCombo + 1:
-		$"/root/AudioPlayer".play_sfx($"/root/AudioPlayer".speed_up_sfx)
 	
 	if combo > velocityBaseCombo:
 		curr_vel = VelocityState.LV_1
@@ -274,7 +274,7 @@ func fall_inside_hole():
 	die()
 
 func _on_MovementTween_tween_all_completed():
-	curr_tile_combo += 1
+#	curr_tile_combo += 1
 	is_grid_snapped = true
 	
 	handle_collision_arrive()
