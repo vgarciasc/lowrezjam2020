@@ -8,6 +8,7 @@ enum VelocityState { LV_0 = 0, LV_1 = 1 }
 
 export (Array, Color) var velocityModulations;
 export (Array, int) var velocitySpeeds;
+export (int) var velocityBaseCombo = 10
 
 onready var CELL_SIZE = 16
 onready var level = Global.safe_first_in_group(get_tree(), "Level")
@@ -165,10 +166,10 @@ func die():
 func update_velocity():
 	var combo = curr_tile_combo - curr_tile_combo_penalty
 	
-	if combo == 8:
+	if combo == velocityBaseCombo + 1:
 		$"/root/AudioPlayer".play_sfx($"/root/AudioPlayer".speed_up_sfx)
 	
-	if combo > 6:
+	if combo > velocityBaseCombo:
 		curr_vel = VelocityState.LV_1
 	else:
 		curr_vel = VelocityState.LV_0
