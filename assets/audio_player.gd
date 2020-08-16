@@ -13,6 +13,7 @@ export (AudioStream) var portal_exit_sfx
 export (AudioStream) var rock_smash_sfx
 export (AudioStream) var speed_up_sfx
 export (AudioStream) var wall_bump_sfx
+export (AudioStream) var zoom_out_sfx
 export (AudioStream) var zoom_in_sfx
 
 export (AudioStream) var main_music
