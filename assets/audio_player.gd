@@ -45,6 +45,9 @@ func play_music_main(distant=false):
 	if curr_audiop.get_stream() == main_music or curr_audiop.get_stream() == main_music_distant:
 		from_pos = curr_audiop.get_playback_position()
 	
+	if distant:
+		from_pos = 0
+	
 	next_audiop.set_stream(main_music_distant if distant else main_music)
 	next_audiop.play(from_pos)
 	handle_fade(curr_audiop, next_audiop)
@@ -97,3 +100,9 @@ func handle_fade(curr_audiop, next_audiop):
 		curr_audiop.stop()
 	
 	proceed_next_audio_player()
+
+func fade_out():
+	$Tween.interpolate_property(
+		get_active_audio_player(), "volume_db",
+		0, -80, 3.0, Tween.TRANS_LINEAR)
+	$Tween.start()

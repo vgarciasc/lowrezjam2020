@@ -28,6 +28,7 @@ var curr_tile_combo_penalty = 0
 var is_grid_snapped = true
 var is_frozen = false
 var is_anim_frozen = false
+var is_ending_game = false
 
 func _ready():
 	VisualServer.set_default_clear_color(Color.black)
@@ -140,6 +141,9 @@ func handle_collision_arrive():
 				next_dir = obj.direction
 			elif obj.is_in_group("Portal"):
 				enter_portal(obj)
+			elif obj.is_in_group("FinalRun"):
+				$"/root/AudioPlayer".fade_out()
+				is_ending_game = true
 			elif obj.is_in_group("QuitArea"):
 				get_tree().quit()
 			elif obj.is_in_group("EndingTrigger"):
@@ -166,6 +170,9 @@ func die():
 	emit_signal("death")
 
 func update_velocity():
+	if is_ending_game:
+		return
+	
 	var combo = curr_tile_combo - curr_tile_combo_penalty
 	
 	if combo == velocityBaseCombo + 1:
