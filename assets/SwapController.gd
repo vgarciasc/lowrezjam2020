@@ -26,6 +26,7 @@ func _input(event):
 	
 	if event.is_action_pressed("change_mode") and !is_zoom_locked and can_zoom \
 		and selected_room == null:
+		rooms[0].toggle_hovering(true)
 		toggle_zoom()
 	
 	if event is InputEventMouseMotion and !is_zoomed:
