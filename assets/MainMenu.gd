@@ -7,3 +7,5 @@ func _ready():
 	
 	if $"/root/Global".coming_from_level_complete:
 		emit_signal("coming_from_level_complete")
+	
+	$"/root/AudioPlayer".play_music_main(false)

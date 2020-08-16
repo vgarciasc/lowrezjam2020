@@ -15,8 +15,11 @@ export (AudioStream) var zoom_in_sfx
 export (AudioStream) var zoom_out_sfx
 
 export (AudioStream) var main_music
+export (AudioStream) var main_music_distant
 export (AudioStream) var lvl_music
 export (AudioStream) var lvl_music_distant
+
+var audio_active_idx = 0
 
 func play_sfx(sfx, from_pos=0.0):
 	var helper = audio_player_helper.instance()
@@ -31,6 +34,55 @@ func play_key_get():
 	play_sfx(key_get_sfx[key_get_idx])
 	key_get_idx = (key_get_idx + 1) % key_get_sfx.size()
 
-func play_main_music():
-	set_stream(main_music)
-	play()
+func play_music_main(distant=false):
+	var from_pos = 0
+	var curr_audiop = get_active_audio_player()
+	var next_audiop = get_next_audio_player()
+	
+	if curr_audiop.get_stream() == main_music or curr_audiop.get_stream() == main_music_distant:
+		from_pos = curr_audiop.get_playback_position()
+	
+	next_audiop.set_stream(main_music_distant if distant else main_music)
+	next_audiop.play(from_pos)
+	handle_fade(curr_audiop, next_audiop)
+
+func play_lvl_music(distant=false):
+	var from_pos = 0
+	var curr_audiop = get_active_audio_player()
+	var next_audiop = get_next_audio_player()
+	
+	var music = lvl_music_distant if distant else lvl_music
+	
+	if curr_audiop.get_stream() == music:
+		return
+	
+	if curr_audiop.get_stream() == lvl_music or curr_audiop.get_stream() == lvl_music_distant:
+		from_pos = curr_audiop.get_playback_position()
+	
+	next_audiop.set_stream(music)
+	next_audiop.play(from_pos)
+	handle_fade(curr_audiop, next_audiop)
+
+func get_active_audio_player():
+	return [$AudioStreamPlayer1, $AudioStreamPlayer2][audio_active_idx]
+
+func get_next_audio_player():
+	return [$AudioStreamPlayer1, $AudioStreamPlayer2][(audio_active_idx + 1) % 2]
+
+func proceed_next_audio_player():
+	audio_active_idx = (audio_active_idx + 1) % 2
+
+func handle_fade(curr_audiop, next_audiop):
+	if curr_audiop.get_stream() != null:
+		$Tween.interpolate_property(
+			curr_audiop, "volume_db",
+			0, -10, 0.5, Tween.TRANS_LINEAR)
+		$Tween.interpolate_property(
+			next_audiop, "volume_db",
+			-10, 0, 0.5, Tween.TRANS_LINEAR)
+		$Tween.start()
+		
+		yield($Tween, "tween_all_completed")
+		curr_audiop.stop()
+	
+	proceed_next_audio_player()

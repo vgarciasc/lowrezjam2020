@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/audio_player.gd" type="Script" id=1]
 [ext_resource path="res://assets/Sounds/SFX/Fall_Into_Hole.wav" type="AudioStream" id=2]
@@ -15,6 +15,10 @@
 [ext_resource path="res://assets/Sounds/SFX/Key_Get01.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/Sounds/SFX/Key_Get04.wav" type="AudioStream" id=14]
 [ext_resource path="res://scenes/AudioPlayerHelper.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/Sounds/Music/Level_Music_Distant.ogg" type="AudioStream" id=16]
+[ext_resource path="res://assets/Sounds/Music/Main_Menu.ogg" type="AudioStream" id=17]
+[ext_resource path="res://assets/Sounds/Music/Level_Music.ogg" type="AudioStream" id=18]
+[ext_resource path="res://assets/Sounds/Music/Main_Music_Distant.ogg" type="AudioStream" id=19]
 
 [node name="AudioPlayer" type="AudioStreamPlayer"]
 script = ExtResource( 1 )
@@ -28,3 +32,13 @@ speed_up_sfx = ExtResource( 3 )
 wall_bump_sfx = ExtResource( 11 )
 zoom_in_sfx = ExtResource( 12 )
 zoom_out_sfx = ExtResource( 10 )
+main_music = ExtResource( 17 )
+main_music_distant = ExtResource( 19 )
+lvl_music = ExtResource( 18 )
+lvl_music_distant = ExtResource( 16 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="."]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
